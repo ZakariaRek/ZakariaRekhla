@@ -238,6 +238,125 @@
             background-clip: text;
         }
 
+        /* Updated Education & Experience Section */
+        .education-experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-column {
+            position: relative;
+        }
+
+        .column-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            color: #667eea;
+        }
+
+        .experience-column .column-title {
+            color: #667eea;
+        }
+
+        .education-column .column-title {
+            color: #764ba2;
+        }
+
+        .timeline-vertical {
+            position: relative;
+        }
+
+        .timeline-vertical::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+
+        .education-column .timeline-vertical::before {
+            background: linear-gradient(to bottom, #764ba2, #667eea);
+        }
+
+        .timeline-entry {
+            margin: 2rem 0;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 10px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3);
+        }
+
+        .education-column .timeline-entry::before {
+            background: #764ba2;
+            box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.3);
+        }
+
+        .timeline-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .experience-column .timeline-card {
+            border-left: 3px solid #667eea;
+        }
+
+        .education-column .timeline-card {
+            border-left: 3px solid #764ba2;
+        }
+
+        .timeline-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .experience-column .timeline-card h3 {
+            color: #667eea;
+        }
+
+        .education-column .timeline-card h3 {
+            color: #764ba2;
+        }
+
+        .timeline-card h4 {
+            color: #a0a0a0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-card p {
+            color: #c0c0c0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
         /* Skills Section */
         .skills-grid {
             display: grid;
@@ -491,101 +610,13 @@
             margin-top: 3rem;
         }
 
-        /* Education & Experience Section */
-        .timeline {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #667eea, #764ba2);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            margin: 3rem 0;
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 20px;
-            width: 14px;
-            height: 14px;
-            background: #667eea;
-            border-radius: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 0 6px rgba(102, 126, 234, 0.3);
-        }
-
-        .timeline-content {
-            width: 45%;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 2rem;
-            position: relative;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content {
-            margin-left: auto;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content {
-            margin-right: auto;
-        }
-
-        .timeline-content h3 {
-            color: #667eea;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-content h4 {
-            color: #a0a0a0;
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .timeline-content p {
-            color: #c0c0c0;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Visual distinction between Education and Experience */
-        .experience-item {
-            background: rgba(102, 126, 234, 0.05);
-            border-left: 4px solid #667eea;
-        }
-
-        .education-item {
-            background: rgba(118, 75, 162, 0.05);
-            border-left: 4px solid #764ba2;
-        }
-
-        .education-item h3 {
-            color: #764ba2;
-        }
-
-        /* Certifications Section */
+        /* Updated Certifications Section */
         .certifications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
             margin-top: 3rem;
-            max-width: 1200px;
+            max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -595,11 +626,13 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 1.8rem;
+            padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            min-height: 250px;
         }
 
         .cert-card:hover {
@@ -609,15 +642,42 @@
         }
 
         .cert-icon {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
             color: #667eea;
         }
 
-        .cert-card h3 {
-            margin-bottom: 0.8rem;
-            font-size: 1rem;
+        .cert-content {
             flex-grow: 1;
+        }
+
+        .cert-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .cert-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cert-link:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         /* Contact Section */
@@ -694,24 +754,16 @@
                 padding: 0 20px;
             }
 
+            .education-experience-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
             .skills-grid,
             .secondary-projects,
             .certifications-grid,
             .contact-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item::before {
-                left: 20px;
-            }
-
-            .timeline-content {
-                width: calc(100% - 60px);
-                margin-left: auto !important;
             }
 
             .cta-buttons {
@@ -778,7 +830,6 @@
             <div class="logo">Zakaria Rekhla</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#home">Home</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -793,17 +844,13 @@
             <div class="container">
                 <div class="hero-content">
                     <h1>Zakaria Rekhla</h1>
-                    <p class="subtitle">Junior DevOps Engineer</p>
+                    <p class="subtitle">DevOps Engineer</p>
                     <p class="description">
                         Passionate cloud-native engineer specializing in enterprise-grade microservices platforms, GitOps workflows, and comprehensive observability solutions. Experienced in designing scalable, resilient cloud infrastructure using modern DevOps methodologies, container orchestration, service mesh technologies, and AI/ML integration for intelligent applications and healthcare solutions.
                     </p>
                     <div class="achievement-badges">
-                        <span class="badge">8 Production Microservices</span>
-                        <span class="badge">Kubernetes Expert</span>
+                        <span class="badge">Kubernetes Administrator</span>
                         <span class="badge">AI/ML Integration</span>
-                        <span class="badge">70% API Optimization</span>
-                        <span class="badge">GitOps Champion</span>
-                        <span class="badge">Sub-200ms Response Times</span>
                         <span class="badge">UNESCO Hackathon Winner</span>
                     </div>
                     <div class="cta-buttons">
@@ -818,40 +865,60 @@
         <section id="experience">
             <div class="container">
                 <h2 class="section-title">Education & Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content experience-item">
-                            <h3>Full Stack Developer Intern</h3>
-                            <h4>Norsys Africa (Marrakech) | May 2024 - June 2024</h4>
-                            <p>Developed revolutionary healthcare application with dual platforms integrating cutting-edge AI technologies including Hugging Face OCR-Donut-CORD model and OpenAI API for personalized health recommendations.</p>
+                <div class="education-experience-grid">
+                    <!-- Experience Column (Left) -->
+                    <div class="section-column experience-column">
+                        <h3 class="column-title">Professional Experience</h3>
+                        <div class="timeline-vertical">
+                            <div class="timeline-entry">
+                                <div class="timeline-card">
+                                    <h3>Full Stack Developer Intern</h3>
+                                    <h4>Norsys Africa (Marrakech) | May 2024 - June 2024</h4>
+                                    <p>Developed revolutionary healthcare application with dual platforms integrating cutting-edge AI technologies including Hugging Face OCR-Donut-CORD model and OpenAI API for personalized health recommendations.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-entry">
+                                <div class="timeline-card">
+                                    <h3>Full Stack Developer Intern</h3>
+                                    <h4>Ministry of Health and Social Protection (Safi) | March 2024 - June 2024</h4>
+                                    <p>Led development of MedConnect: comprehensive web application for digitizing medical records and automated activity report generation with advanced analytics dashboard and medical data visualization.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-entry">
+                                <div class="timeline-card">
+                                    <h3>Software Developer Intern</h3>
+                                    <h4>Higher School of Technology Safi | April 2023 - June 2023</h4>
+                                    <p>Architected and developed comprehensive web platform automating library operations including loan management, return processing, and membership administration with analytics dashboard.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content experience-item">
-                            <h3>Full Stack Developer Intern</h3>
-                            <h4>Ministry of Health and Social Protection (Safi) | March 2024 - June 2024</h4>
-                            <p>Led development of MedConnect: comprehensive web application for digitizing medical records and automated activity report generation with advanced analytics dashboard and medical data visualization.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content education-item">
-                            <h3>Software Engineering - Bachelor's Degree</h3>
-                            <h4>Higher School of Technology Safi | 2022 - 2024</h4>
-                            <p>Specialized in software engineering with focus on web development, database management, and software architecture. Graduated with distinction and comprehensive knowledge in modern development practices.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content experience-item">
-                            <h3>Software Developer Intern</h3>
-                            <h4>Higher School of Technology Safi | April 2023 - June 2023</h4>
-                            <p>Architected and developed comprehensive web platform automating library operations including loan management, return processing, and membership administration with analytics dashboard.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content education-item">
-                            <h3>University Technology Diploma</h3>
-                            <h4>Higher School of Technology Safi | 2020 - 2022</h4>
-                            <p>Foundation in computer science, programming fundamentals, database systems, and web technologies. Strong academic performance with practical project experience.</p>
+
+                    <!-- Education Column (Right) -->
+                    <div class="section-column education-column">
+                        <h3 class="column-title">Academic Background</h3>
+                        <div class="timeline-vertical">
+                            <div class="timeline-entry">
+                                <div class="timeline-card">
+                                    <h3>Master's in Information Systems Engineering</h3>
+                                    <h4>Faculty of Sciences Semlalia Marrakech | 2024 - 2026</h4>
+                                    <p>Advanced studies in software development methodologies, information systems urbanization, quality assurance, intelligent workstation architectures, and industrial programming environments with project management focus.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-entry">
+                                <div class="timeline-card">
+                                    <h3>Software Engineering - Bachelor's Degree</h3>
+                                    <h4>Higher School of Technology Safi | 2022 - 2024</h4>
+                                    <p>Specialized in software engineering with focus on web development, database management, and software architecture. Graduated with distinction and comprehensive knowledge in modern development practices.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-entry">
+                                <div class="timeline-card">
+                                    <h3>University Technology Diploma</h3>
+                                    <h4>Higher School of Technology Safi | 2020 - 2022</h4>
+                                    <p>Foundation in computer science, programming fundamentals, database systems, and web technologies. Strong academic performance with practical project experience.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -863,7 +930,7 @@
                 <h2 class="section-title">Technical Expertise</h2>
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h3>☸️ Container Orchestration & Service Mesh</h3>
+                        <h3><i class="fas fa-dharmachakra"></i> Container Orchestration & Service Mesh</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Kubernetes</span>
                             <span class="skill-tag">Docker</span>
@@ -873,7 +940,7 @@
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>☁️ Cloud Infrastructure & CI/CD</h3>
+                        <h3><i class="fas fa-cloud"></i> Cloud Infrastructure & CI/CD</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">AWS</span>
                             <span class="skill-tag">AWS EKS</span>
@@ -886,7 +953,7 @@
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>📊 Observability & Monitoring</h3>
+                        <h3><i class="fas fa-chart-line"></i> Observability & Monitoring</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Prometheus</span>
                             <span class="skill-tag">Grafana</span>
@@ -896,7 +963,7 @@
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>🏗️ Microservices & Backend Development</h3>
+                        <h3><i class="fas fa-cubes"></i> Microservices & Backend Development</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Spring Boot</span>
                             <span class="skill-tag">Spring Cloud</span>
@@ -910,7 +977,7 @@
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>💻 Programming & AI/ML</h3>
+                        <h3><i class="fas fa-code"></i> Programming & AI/ML</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Java 17+</span>
                             <span class="skill-tag">Go</span>
@@ -924,7 +991,7 @@
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>🌐 Frontend Technologies</h3>
+                        <h3><i class="fas fa-laptop-code"></i> Frontend Technologies</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">React</span>
                             <span class="skill-tag">Next.js</span>
@@ -1009,15 +1076,15 @@
                 <div class="secondary-projects">
                     <div class="project-card">
                         <div class="project-header">
-                            <h3>🏠 Room Reservation Microservices System</h3>
+                            <h3><i class="fas fa-home"></i> Room Reservation Microservices System</h3>
                             <p>Complete DevOps-focused microservices platform for room reservation with comprehensive CI/CD pipeline, containerization, and monitoring. Features Jenkins automation, Docker deployment, multi-environment configuration, and robust testing workflows with security scanning and automated notifications.</p>
                             <div class="project-stats">
-                                <span class="stat-item">🔄 Jenkins CI/CD Pipeline</span>
-                                <span class="stat-item">🐳 Docker & Docker Compose</span>
-                                <span class="stat-item">🔒 Security Scanning with Trivy</span>
-                                <span class="stat-item">🚀 Multi-stage Deployment</span>
-                                <span class="stat-item">✅ Automated Testing</span>
-                                <span class="stat-item">📧 Email Notifications</span>
+                                <span class="stat-item"><i class="fas fa-sync-alt"></i> Jenkins CI/CD Pipeline</span>
+                                <span class="stat-item"><i class="fab fa-docker"></i> Docker & Docker Compose</span>
+                                <span class="stat-item"><i class="fas fa-shield-alt"></i> Security Scanning with Trivy</span>
+                                <span class="stat-item"><i class="fas fa-rocket"></i> Multi-stage Deployment</span>
+                                <span class="stat-item"><i class="fas fa-check-circle"></i> Automated Testing</span>
+                                <span class="stat-item"><i class="fas fa-envelope"></i> Email Notifications</span>
                             </div>
                             <div class="project-tech">
                                 <span class="tech-tag">Spring Boot</span>
@@ -1030,7 +1097,7 @@
                                 <span class="tech-tag">Email Integration</span>
                             </div>
                             <div class="architecture-links">
-                                <h4>🔧 DevOps Features:</h4>
+                                <h4><i class="fas fa-tools"></i> DevOps Features:</h4>
                                 <a href="#" target="_blank">Multi-stage Jenkins Pipeline</a>
                                 <a href="#" target="_blank">Docker Containerization</a>
                                 <a href="#" target="_blank">Security Vulnerability Scanning</a>
@@ -1039,13 +1106,13 @@
                             </div>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/ZakariaRek/room-reservation-system-auth-service" target="_blank">🔗 GitHub</a>
+                            <a href="https://github.com/ZakariaRek/room-reservation-system-auth-service" target="_blank"><i class="fas fa-link"></i> GitHub</a>
                         </div>
                     </div>
 
                     <div class="project-card">
                         <div class="project-header">
-                            <h3>🏥 MedConnect Healthcare Platform</h3>
+                            <h3><i class="fas fa-hospital"></i> MedConnect Healthcare Platform</h3>
                             <p>Full-stack web application for digitizing medical records and automated activity report generation for occupational health units. Features real-time analytics, patient management, and comprehensive reporting system.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">Next.js</span>
@@ -1057,13 +1124,13 @@
                             </div>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">🔗 GitHub</a>
+                            <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank"><i class="fas fa-link"></i> GitHub</a>
                         </div>
                     </div>
 
                     <div class="project-card">
                         <div class="project-header">
-                            <h3>📚 Library Management System</h3>
+                            <h3><i class="fas fa-book"></i> Library Management System</h3>
                             <p>Comprehensive web platform automating library operations including loan management, return processing, membership administration, analytics dashboard, and automated notification system with advanced search capabilities.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">Next.js</span>
@@ -1075,13 +1142,13 @@
                             </div>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">🔗 GitHub</a>
+                            <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank"><i class="fas fa-link"></i> GitHub</a>
                         </div>
                     </div>
 
                     <div class="project-card">
                         <div class="project-header">
-                            <h3>🩺 AI-Powered Blood Pressure Monitor</h3>
+                            <h3><i class="fas fa-heartbeat"></i> AI-Powered Blood Pressure Monitor</h3>
                             <p>Revolutionary healthcare application with Next.js web dashboard for healthcare providers. Features AI-powered OCR using Hugging Face models for automatic blood pressure reading extraction from device photos, real-time Firebase communication, personalized health insights with OpenAI integration, and comprehensive patient management system.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">Next.js</span>
@@ -1096,13 +1163,13 @@
                             </div>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/ZakariaRek/Blood-Pressure" target="_blank">🔗 GitHub</a>
+                            <a href="https://github.com/ZakariaRek/Blood-Pressure" target="_blank"><i class="fas fa-link"></i> GitHub</a>
                         </div>
                     </div>
 
                     <div class="project-card">
                         <div class="project-header">
-                            <h3>🏆 TERRAP-POD - UNESCO Hackathon Winner</h3>
+                            <h3><i class="fas fa-trophy"></i> TERRAP-POD - UNESCO Hackathon Winner</h3>
                             <p><strong>1st Place Winner</strong> at UNESCO and Cadi Ayyad University-sponsored hackathon. Innovative modular vertical farming solution addressing Morocco's agricultural water challenges using IoT and sustainable technologies.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">IoT Sensors</span>
@@ -1113,97 +1180,65 @@
                             </div>
                         </div>
                         <div class="project-links">
-                            <a href="https://www.linkedin.com/in/zakaria-rekhla-2116a72a1/" target="_blank">🔗 LinkedIn Post</a>
+                            <a href="https://www.linkedin.com/in/zakaria-rekhla-2116a72a1/" target="_blank"><i class="fas fa-link"></i> LinkedIn Post</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- <section id="education-experience">
-            <div class="container">
-                <h2 class="section-title">Education & Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Full Stack Developer Intern</h3>
-                            <h4>Norsys Africa (Marrakech) | May 2024 - June 2024</h4>
-                            <p>Developed revolutionary healthcare application with dual platforms and integrated cutting-edge AI technologies including Hugging Face OCR-Donut-CORD model and OpenAI API for personalized health recommendations.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Full Stack Developer Intern</h3>
-                            <h4>Ministry of Health and Social Protection (Safi) | March 2024 - June 2024</h4>
-                            <p>Led development of MedConnect: comprehensive web application for digitizing medical records and automated activity report generation with advanced analytics dashboard and medical data visualization.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Software Engineering - Bachelor's Degree</h3>
-                            <h4>Higher School of Technology Safi | 2022 - 2024</h4>
-                            <p>Specialized in software engineering with focus on web development, database management, and software architecture. Graduated with distinction and comprehensive knowledge in modern development practices.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Software Developer Intern</h3>
-                            <h4>Higher School of Technology Safi | April 2023 - June 2023</h4>
-                            <p>Architected and developed comprehensive web platform automating library operations including loan management, return processing, and membership administration with analytics dashboard.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>University Technology Diploma</h3>
-                            <h4>Higher School of Technology Safi | 2020 - 2022</h4>
-                            <p>Foundation in computer science, programming fundamentals, database systems, and web technologies. Strong academic performance with practical project experience.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
         <section id="certifications">
             <div class="container">
-                <h2 class="section-title">Certifications & Recognition</h2>
+                <h2 class="section-title">Professional Certifications</h2>
                 <div class="certifications-grid">
                     <div class="cert-card">
-                        <div class="cert-icon">☸️</div>
-                        <h3>KCNA: Kubernetes and Cloud Native Associate</h3>
-                        <p>Cloud Native Computing Foundation (CNCF)</p>
-                        <span class="badge">Certified 2024</span>
-                        <a href="https://www.credly.com/badges/ff85a052-4798-41e9-8def-b84ff9a3f97c/public_url" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; font-size: 0.9rem;">
-                            <i class="fas fa-external-link-alt"></i> View Certificate
+                        <div class="cert-icon">
+                            <i class="fas fa-dharmachakra"></i>
+                        </div>
+                        <div class="cert-content">
+                            <h3>KCNA: Kubernetes and Cloud Native Associate</h3>
+                        </div>
+                        <a href="https://www.credly.com/badges/ff85a052-4798-41e9-8def-b84ff9a3f97c/public_url" target="_blank" class="cert-link">
+                            <i class="fas fa-certificate"></i>
+                            View Credential
                         </a>
                     </div>
                     <div class="cert-card">
-                        <div class="cert-icon">🐧</div>
-                        <h3>LFS250: Kubernetes and Cloud Native Essentials</h3>
-                        <p>Linux Foundation</p>
-                        <span class="badge">Completed 2024</span>
-                        <a href="https://www.credly.com/badges/c118d1fa-793e-412d-90f4-bca31368cf5f/public_url" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; font-size: 0.9rem;">
-                            <i class="fas fa-external-link-alt"></i> View Certificate
+                        <div class="cert-icon">
+                            <i class="fab fa-linux"></i>
+                        </div>
+                        <div class="cert-content">
+                            <h3>LFS250: Kubernetes and Cloud Native Essentials</h3>
+                        </div>
+                        <a href="https://www.credly.com/badges/c118d1fa-793e-412d-90f4-bca31368cf5f/public_url" target="_blank" class="cert-link">
+                            <i class="fas fa-certificate"></i>
+                            View Credential
                         </a>
                     </div>
                     <div class="cert-card">
-                        <div class="cert-icon">🌐</div>
-                        <h3>CCNA: Switching, Routing, and Wireless Essentials</h3>
-                        <p>Cisco Systems</p>
-                        <span class="badge">Certified 2023</span>
-                        <a href="https://www.credly.com/badges/27bf579b-aa50-4a5f-bb9d-420ca002bde0/public_url" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; font-size: 0.9rem;">
-                            <i class="fas fa-external-link-alt"></i> View Certificate
+                        <div class="cert-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="cert-content">
+                            <h3>CCNA: Switching, Routing, and Wireless Essentials</h3>
+                        </div>
+                        <a href="https://www.credly.com/badges/27bf579b-aa50-4a5f-bb9d-420ca002bde0/public_url" target="_blank" class="cert-link">
+                            <i class="fas fa-certificate"></i>
+                            View Credential
                         </a>
                     </div>
                     <div class="cert-card">
-                        <div class="cert-icon">📡</div>
-                        <h3>Introduction to Network Operation 1.0</h3>
-                        <p>Internet Society</p>
-                        <span class="badge">Completed 2023</span>
-                        <a href="https://certificates.isoc.org/d1e504a3-ca1d-4b62-9a3b-5e378c0d8b14#gs.b6ah1i" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; font-size: 0.9rem;">
-                            <i class="fas fa-external-link-alt"></i> View Certificate
+                        <div class="cert-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="cert-content">
+                            <h3>Introduction to Network Operation 1.0</h3>
+                        </div>
+                        <a href="https://certificates.isoc.org/d1e504a3-ca1d-4b62-9a3b-5e378c0d8b14#gs.b6ah1i" target="_blank" class="cert-link">
+                            <i class="fas fa-certificate"></i>
+                            View Credential
                         </a>
                     </div>
-                    
                 </div>
             </div>
         </section>
@@ -1307,7 +1342,7 @@
         }, observerOptions);
 
         // Observe all animatable elements
-        document.querySelectorAll('.skill-category, .project-card, .timeline-item, .cert-card, .contact-card').forEach(el => {
+        document.querySelectorAll('.skill-category, .project-card, .timeline-entry, .cert-card, .contact-card').forEach(el => {
             observer.observe(el);
         });
 
@@ -1331,7 +1366,7 @@
         typeText(subtitle, text);
 
         // Enhanced button interactions
-        document.querySelectorAll('.btn').forEach(btn => {
+        document.querySelectorAll('.btn, .cert-link').forEach(btn => {
             btn.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-3px) scale(1.02)';
             });
