@@ -6,6 +6,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Zakaria Rekhla - Junior DevOps Engineer</title>
+    <link rel="icon" sizes="20" type="image/png" href="./assets/icon.png">
+
     <style>
         * {
             margin: 0;
@@ -87,8 +89,24 @@
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
             width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-links a {
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
         }
 
         /* Hero Section */
@@ -278,10 +296,26 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: linear-gradient(to bottom, #667eea, #764ba2);
+            background: rgba(102, 126, 234, 0.2);
         }
 
-        .education-column .timeline-vertical::before {
+        .timeline-vertical::after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            width: 2px;
+            height: 0%;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            transition: height 2s ease-in-out;
+            z-index: 2;
+        }
+
+        .timeline-vertical.animate-line::after {
+            height: 100%;
+        }
+
+        .education-column .timeline-vertical::after {
             background: linear-gradient(to bottom, #764ba2, #667eea);
         }
 
@@ -301,6 +335,12 @@
             background: #667eea;
             border-radius: 50%;
             box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3);
+            z-index: 3;
+            transition: all 0.5s ease;
+        }
+
+        .timeline-entry.animate-point::before {
+            animation: timelinePulse 2s ease-in-out infinite;
         }
 
         .education-column .timeline-entry::before {
@@ -315,11 +355,19 @@
             border-radius: 15px;
             padding: 1.5rem;
             transition: all 0.3s ease;
+            opacity: 1; /* Changed from 0 to 1 */
+            transform: translateY(0); /* Changed from translateY(30px) to translateY(0) */
         }
 
         .timeline-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             background: rgba(255, 255, 255, 0.08);
+        }
+
+        .timeline-card.show {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s ease;
         }
 
         .experience-column .timeline-card {
@@ -357,7 +405,7 @@
             line-height: 1.6;
         }
 
-        /* Skills Section */
+        /* Skills Section - Animations Removed */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -372,6 +420,8 @@
             border-radius: 20px;
             padding: 2.5rem;
             transition: all 0.3s ease;
+            opacity: 1; /* Always visible */
+            transform: scale(1); /* No initial scaling */
         }
 
         .skill-category:hover {
@@ -411,7 +461,7 @@
             transform: scale(1.05);
         }
 
-        /* Projects Section */
+        /* Projects Section - Animations Removed */
         .projects-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -427,11 +477,12 @@
             overflow: hidden;
             transition: all 0.3s ease;
             position: relative;
+            opacity: 1; /* Always visible */
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .featured-project {
@@ -441,8 +492,8 @@
         }
 
         .featured-project:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 30px 60px rgba(102, 126, 234, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.25);
         }
 
         .project-header {
@@ -610,7 +661,7 @@
             margin-top: 3rem;
         }
 
-        /* Updated Certifications Section */
+        /* Updated Certifications Section - Animations Removed */
         .certifications-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -633,6 +684,8 @@
             flex-direction: column;
             justify-content: space-between;
             min-height: 250px;
+            opacity: 1; /* Always visible */
+            transform: scale(1); /* No initial scaling */
         }
 
         .cert-card:hover {
@@ -645,6 +698,17 @@
             font-size: 3rem;
             margin-bottom: 1.5rem;
             color: #667eea;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 4rem;
+        }
+
+        .cert-icon img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 8px;
         }
 
         .cert-content {
@@ -727,11 +791,11 @@
             font-size: 0.85rem;
         }
 
-        /* Animations */
+        /* Enhanced Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -739,8 +803,103 @@
             }
         }
 
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(120px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.6), 0 0 30px rgba(102, 126, 234, 0.4);
+            }
+        }
+
+        @keyframes drawLine {
+            from {
+                height: 0%;
+            }
+            to {
+                height: 100%;
+            }
+        }
+
+        @keyframes timelinePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 8px rgba(102, 126, 234, 0.5);
+            }
+        }
+
         .fade-in-up {
-            animation: fadeInUp 0.6s ease forwards;
+            animation: fadeInUp 1.5s ease forwards;
+            opacity: 0;
+        }
+
+        .fade-in-left {
+            animation: fadeInLeft 1.5s ease forwards;
+            opacity: 0;
+        }
+
+        .fade-in-right {
+            animation: fadeInRight 1.5s ease forwards;
             opacity: 0;
         }
 
@@ -750,37 +909,246 @@
                 display: none;
             }
 
+            .container {
+                padding: 0 15px;
+            }
+
             .hero {
-                padding: 0 20px;
+                padding: 0 15px;
+                height: auto;
+                min-height: 100vh;
             }
 
-            .education-experience-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
+            .hero h1 {
+                font-size: 2.5rem;
+                text-align: center;
             }
 
-            .skills-grid,
-            .secondary-projects,
-            .certifications-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
+            .hero .subtitle {
+                font-size: 1.4rem;
+                text-align: center;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .repo-grid {
-                grid-template-columns: 1fr;
+            .hero .description {
+                font-size: 1rem;
+                text-align: center;
             }
 
             .achievement-badges {
                 justify-content: center;
             }
 
+            .education-experience-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .column-title {
+                font-size: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .timeline-vertical::before,
+            .timeline-vertical::after {
+                left: 15px;
+            }
+
+            .timeline-entry::before {
+                left: 9px;
+            }
+
+            .timeline-entry {
+                padding-left: 50px;
+            }
+
+            .timeline-card {
+                padding: 1.2rem;
+            }
+
+            .timeline-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .timeline-card h4 {
+                font-size: 0.9rem;
+            }
+
+            .timeline-card p {
+                font-size: 0.85rem;
+            }
+
+            .skills-grid,
+            .secondary-projects,
+            .certifications-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .skill-category {
+                padding: 1.5rem;
+            }
+
+            .skill-category h3 {
+                font-size: 1.2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .repo-grid {
+                grid-template-columns: 1fr;
+            }
+
             .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .project-header {
+                padding: 1.5rem;
+            }
+
+            .project-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .featured-project h3 {
+                font-size: 1.5rem;
+            }
+
+            .project-stats {
+                padding: 1rem;
+            }
+
+            .stat-item {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .cert-card {
+                padding: 1.5rem;
+                min-height: 220px;
+            }
+
+            .cert-icon {
                 font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .cert-icon img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .cert-card h3 {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero .description {
+                font-size: 0.9rem;
+            }
+
+            .badge {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-card {
+                padding: 1rem;
+            }
+
+            .skill-category {
+                padding: 1.2rem;
+            }
+
+            .project-header {
+                padding: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .cert-card {
+                padding: 1.2rem;
+                min-height: 200px;
+            }
+
+            .project-stats {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .stat-item {
+                margin: 2px 0;
+                text-align: center;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .hero {
+                padding: 0 10px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .timeline-card {
+                padding: 0.8rem;
+            }
+
+            .skill-category {
+                padding: 1rem;
+            }
+
+            .project-header {
+                padding: 1rem;
+            }
+
+            .cert-card {
+                padding: 1rem;
+                min-height: 180px;
             }
         }
 
@@ -864,27 +1232,27 @@
 
         <section id="experience">
             <div class="container">
-                <h2 class="section-title">Education & Experience</h2>
+                <h2 class="section-title fade-in-up">Education & Experience</h2>
                 <div class="education-experience-grid">
                     <!-- Experience Column (Left) -->
-                    <div class="section-column experience-column">
+                    <div class="section-column experience-column fade-in-left">
                         <h3 class="column-title">Professional Experience</h3>
                         <div class="timeline-vertical">
-                            <div class="timeline-entry">
+                            <div class="timeline-entry fade-in-up stagger-1">
                                 <div class="timeline-card">
                                     <h3>Full Stack Developer Intern</h3>
                                     <h4>Norsys Africa (Marrakech) | May 2024 - June 2024</h4>
                                     <p>Developed revolutionary healthcare application with dual platforms integrating cutting-edge AI technologies including Hugging Face OCR-Donut-CORD model and OpenAI API for personalized health recommendations.</p>
                                 </div>
                             </div>
-                            <div class="timeline-entry">
+                            <div class="timeline-entry fade-in-up stagger-2">
                                 <div class="timeline-card">
                                     <h3>Full Stack Developer Intern</h3>
                                     <h4>Ministry of Health and Social Protection (Safi) | March 2024 - June 2024</h4>
                                     <p>Led development of MedConnect: comprehensive web application for digitizing medical records and automated activity report generation with advanced analytics dashboard and medical data visualization.</p>
                                 </div>
                             </div>
-                            <div class="timeline-entry">
+                            <div class="timeline-entry fade-in-up stagger-3">
                                 <div class="timeline-card">
                                     <h3>Software Developer Intern</h3>
                                     <h4>Higher School of Technology Safi | April 2023 - June 2023</h4>
@@ -895,24 +1263,24 @@
                     </div>
 
                     <!-- Education Column (Right) -->
-                    <div class="section-column education-column">
+                    <div class="section-column education-column fade-in-right">
                         <h3 class="column-title">Academic Background</h3>
                         <div class="timeline-vertical">
-                            <div class="timeline-entry">
+                            <div class="timeline-entry fade-in-up stagger-1">
                                 <div class="timeline-card">
                                     <h3>Master's in Information Systems Engineering</h3>
                                     <h4>Faculty of Sciences Semlalia Marrakech | 2024 - 2026</h4>
                                     <p>Advanced studies in software development methodologies, information systems urbanization, quality assurance, intelligent workstation architectures, and industrial programming environments with project management focus.</p>
                                 </div>
                             </div>
-                            <div class="timeline-entry">
+                            <div class="timeline-entry fade-in-up stagger-2">
                                 <div class="timeline-card">
                                     <h3>Software Engineering - Bachelor's Degree</h3>
                                     <h4>Higher School of Technology Safi | 2022 - 2024</h4>
                                     <p>Specialized in software engineering with focus on web development, database management, and software architecture. Graduated with distinction and comprehensive knowledge in modern development practices.</p>
                                 </div>
                             </div>
-                            <div class="timeline-entry">
+                            <div class="timeline-entry fade-in-up stagger-3">
                                 <div class="timeline-card">
                                     <h3>University Technology Diploma</h3>
                                     <h4>Higher School of Technology Safi | 2020 - 2022</h4>
@@ -1193,7 +1561,7 @@
                 <div class="certifications-grid">
                     <div class="cert-card">
                         <div class="cert-icon">
-                            <i class="fas fa-dharmachakra"></i>
+                            <img src="assets/KCNA.png" alt="KCNA Certification" />
                         </div>
                         <div class="cert-content">
                             <h3>KCNA: Kubernetes and Cloud Native Associate</h3>
@@ -1217,7 +1585,7 @@
                     </div>
                     <div class="cert-card">
                         <div class="cert-icon">
-                            <i class="fas fa-network-wired"></i>
+                            <img src="assets/CCNA.png" alt="CCNA Certification" />
                         </div>
                         <div class="cert-content">
                             <h3>CCNA: Switching, Routing, and Wireless Essentials</h3>
@@ -1299,15 +1667,114 @@
             });
         });
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
+        // Navbar scroll effect and active link highlighting
+        function updateNavbar() {
             const navbar = document.getElementById('navbar');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('section[id]');
+            
+            // Add scrolled class
             if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
-        });
+
+            // Highlight active nav link
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Animated timeline lines and cards
+        function animateTimelines() {
+            const experienceSection = document.getElementById('experience');
+            const timelineLines = document.querySelectorAll('.timeline-vertical');
+            const timelineEntries = document.querySelectorAll('.timeline-entry');
+
+            if (!experienceSection) return;
+
+            const rect = experienceSection.getBoundingClientRect();
+            const sectionTop = rect.top + window.scrollY;
+            const sectionBottom = sectionTop + rect.height;
+            const currentScroll = window.scrollY + window.innerHeight / 2;
+
+            // Calculate progress through the education & experience section
+            let progress = 0;
+            if (currentScroll > sectionTop && currentScroll < sectionBottom) {
+                progress = (currentScroll - sectionTop) / (sectionBottom - sectionTop);
+                progress = Math.min(1, Math.max(0, progress));
+            } else if (currentScroll >= sectionBottom) {
+                progress = 1;
+            }
+
+            // Animate timeline lines based on scroll progress
+            timelineLines.forEach((line, lineIndex) => {
+                if (progress > 0.1) { // Start animation when 10% into section
+                    line.classList.add('animate-line');
+                    
+                    // Animate individual timeline entries and cards based on line progress
+                    const entries = line.querySelectorAll('.timeline-entry');
+                    const totalEntries = entries.length;
+                    
+                    entries.forEach((entry, entryIndex) => {
+                        // Calculate when this entry should become active
+                        const entryStartProgress = 0.2 + (entryIndex / totalEntries) * 0.6; // Spread entries across 60% of section scroll
+                        const card = entry.querySelector('.timeline-card');
+                        
+                        if (progress >= entryStartProgress) {
+                            // Add pulsing animation to the timeline point
+                            entry.classList.add('animate-point');
+                            
+                            // Show the card with a slight delay after the point animation
+                            setTimeout(() => {
+                                if (card) {
+                                    card.classList.add('show');
+                                }
+                            }, 300);
+                        }
+                    });
+                }
+            });
+
+            // Synchronize both timeline lines at the end
+            if (progress > 0.8) {
+                timelineLines.forEach(line => {
+                    line.style.setProperty('--line-animation-duration', '0.8s');
+                });
+                
+                // Ensure all cards are shown
+                document.querySelectorAll('.timeline-card').forEach(card => {
+                    card.classList.add('show');
+                });
+            }
+        }
+
+        // Combined scroll handler
+        function handleScroll() {
+            updateNavbar();
+            animateTimelines();
+            
+            // Parallax effect for hero section
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
 
         // Create floating particles
         function createParticles() {
@@ -1327,31 +1794,12 @@
         // Initialize particles
         createParticles();
 
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animatable elements
-        document.querySelectorAll('.skill-category, .project-card, .timeline-entry, .cert-card, .contact-card').forEach(el => {
-            observer.observe(el);
-        });
-
         // Add typing effect to hero subtitle
         const subtitle = document.querySelector('.hero .subtitle');
         const text = subtitle.textContent;
         subtitle.textContent = '';
         
-        function typeText(element, text, delay = 120) {
+        function typeText(element, text, delay = 150) {
             let i = 0;
             function type() {
                 if (i < text.length) {
@@ -1360,12 +1808,12 @@
                     setTimeout(type, delay);
                 }
             }
-            setTimeout(type, 2000);
+            setTimeout(type, 2500);
         }
 
         typeText(subtitle, text);
 
-        // Enhanced button interactions
+        // Enhanced button interactions with ripple effect
         document.querySelectorAll('.btn, .cert-link').forEach(btn => {
             btn.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-3px) scale(1.02)';
@@ -1376,6 +1824,7 @@
             });
 
             btn.addEventListener('click', function(e) {
+                // Create ripple effect
                 const ripple = document.createElement('span');
                 const rect = this.getBoundingClientRect();
                 const size = Math.max(rect.width, rect.height);
@@ -1387,22 +1836,23 @@
                     border-radius: 50%;
                     background: rgba(255,255,255,0.3);
                     transform: scale(0);
-                    animation: ripple 0.6s linear;
+                    animation: ripple 0.8s linear;
                     width: ${size}px;
                     height: ${size}px;
                     left: ${x}px;
                     top: ${y}px;
+                    pointer-events: none;
                 `;
                 
                 this.appendChild(ripple);
                 
                 setTimeout(() => {
                     ripple.remove();
-                }, 600);
+                }, 800);
             });
         });
 
-        // Add CSS for ripple animation
+        // Add CSS for ripple animation and positioning
         const rippleCSS = `
             @keyframes ripple {
                 to {
@@ -1410,33 +1860,28 @@
                     opacity: 0;
                 }
             }
+            .btn, .cert-link {
+                position: relative;
+                overflow: hidden;
+            }
         `;
         const style = document.createElement('style');
         style.textContent = rippleCSS;
         document.head.appendChild(style);
 
-        // Enhanced skill tag interactions
-        document.querySelectorAll('.skill-tag, .tech-tag').forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.08) rotate(1deg)';
-                this.style.boxShadow = '0 4px 20px rgba(102, 126, 234, 0.3)';
-            });
-            
-            tag.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1) rotate(0deg)';
-                this.style.boxShadow = 'none';
-            });
-        });
-
-        // Add intersection observer for counter animations
-        const counters = document.querySelectorAll('.stat-item');
-        counters.forEach(counter => {
-            observer.observe(counter);
-        });
+        // Initialize navbar highlighting and timeline animation on page load
+        handleScroll();
 
         // Console easter egg
         console.log(`
         Welcome to Zakaria Rekhla's Portfolio!
+        
+        🚀 Enhanced with:
+        • Active navbar highlighting with hover-like effects
+        • Slower, more elegant animations (1.5s duration)
+        • Synchronized animated timeline lines
+        • Progressive timeline point animations
+        • Enhanced parallax and interaction effects
         
         Interested in the code? Check out my GitHub:
         https://github.com/ZakariaRek
