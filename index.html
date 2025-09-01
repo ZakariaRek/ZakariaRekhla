@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Zakaria Rekhla - Junior DevOps Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #08081a 0%, #141428 50%, #0f1836 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(8, 8, 26, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(8, 8, 26, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23667eea" stop-opacity="0.1"/><stop offset="100%" stop-color="%23764ba2" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #667eea 50%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            color: #c0c0c0;
+            max-width: 800px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .achievement-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #667eea;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 1s both;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-resume {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .btn-resume:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.6);
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #ffffff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 8px 14px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(102, 126, 234, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .featured-project {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+        }
+
+        .featured-project:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .project-header {
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+
+        .project-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .featured-project h3 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-card p {
+            color: #c0c0c0;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .project-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .stat-item {
+            background: rgba(102, 126, 234, 0.25);
+            color: #667eea;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(102, 126, 234, 0.4);
+            transform: scale(1.05);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(118, 75, 162, 0.25);
+            color: #c0c0c0;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(118, 75, 162, 0.3);
+        }
+
+        .repo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .repo-category h4 {
+            color: #667eea;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .repo-category a {
+            display: block;
+            color: #a0a0a0;
+            text-decoration: none;
+            padding: 8px 12px;
+            margin: 4px 0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .repo-category a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.15);
+            transform: translateX(5px);
+        }
+
+        .architecture-links {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(118, 75, 162, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(118, 75, 162, 0.2);
+        }
+
+        .architecture-links h4 {
+            color: #764ba2;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .architecture-links a {
+            display: inline-block;
+            color: #c0c0c0;
+            text-decoration: none;
+            padding: 8px 16px;
+            margin: 6px 8px 6px 0;
+            background: rgba(118, 75, 162, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border: 1px solid rgba(118, 75, 162, 0.3);
+        }
+
+        .architecture-links a:hover {
+            color: #764ba2;
+            background: rgba(118, 75, 162, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .project-links {
+            padding: 0 2.5rem 2.5rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .project-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: #764ba2;
+        }
+
+        /* Additional Projects Grid for smaller projects */
+        .secondary-projects {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Education & Experience Section */
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            width: 14px;
+            height: 14px;
+            background: #667eea;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 6px rgba(102, 126, 234, 0.3);
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto;
+        }
+
+        .timeline-content h3 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h4 {
+            color: #a0a0a0;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content p {
+            color: #c0c0c0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Visual distinction between Education and Experience */
+        .experience-item {
+            background: rgba(102, 126, 234, 0.05);
+            border-left: 4px solid #667eea;
+        }
+
+        .education-item {
+            background: rgba(118, 75, 162, 0.05);
+            border-left: 4px solid #764ba2;
+        }
+
+        .education-item h3 {
+            color: #764ba2;
+        }
+
+        /* Certifications Section */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cert-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 1.8rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .cert-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .cert-card h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .contact-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card .btn {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 0 20px;
+            }
+
+            .skills-grid,
+            .secondary-projects,
+            .certifications-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item::before {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: auto !important;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .repo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achievement-badges {
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(102, 126, 234, 0.5);
+            border-radius: 50%;
+            animation: float-particle 10s infinite linear;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">Zakaria Rekhla</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Zakaria Rekhla</h1>
+                    <p class="subtitle">Junior DevOps Engineer</p>
+                    <p class="description">
+                        Passionate cloud-native engineer specializing in enterprise-grade microservices platforms, GitOps workflows, and comprehensive observability solutions. Experienced in designing scalable, resilient cloud infrastructure using modern DevOps methodologies, container orchestration, service mesh technologies, and AI/ML integration for intelligent applications and healthcare solutions.
+                    </p>
+                    <div class="achievement-badges">
+                        <span class="badge">8 Production Microservices</span>
+                        <span class="badge">Kubernetes Expert</span>
+                        <span class="badge">AI/ML Integration</span>
+                        <span class="badge">70% API Optimization</span>
+                        <span class="badge">GitOps Champion</span>
+                        <span class="badge">Sub-200ms Response Times</span>
+                        <span class="badge">UNESCO Hackathon Winner</span>
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="./assets/resume.pdf" download class="btn btn-resume">Download Resume</a>
+                        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                        <a href="#projects" class="btn btn-secondary">View Projects</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <h2 class="section-title">Education & Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content experience-item">
+                            <h3>Full Stack Developer Intern</h3>
+                            <h4>Norsys Africa (Marrakech) | May 2024 - June 2024</h4>
+                            <p>Developed revolutionary healthcare application with dual platforms integrating cutting-edge AI technologies including Hugging Face OCR-Donut-CORD model and OpenAI API for personalized health recommendations.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content experience-item">
+                            <h3>Full Stack Developer Intern</h3>
+                            <h4>Ministry of Health and Social Protection (Safi) | March 2024 - June 2024</h4>
+                            <p>Led development of MedConnect: comprehensive web application for digitizing medical records and automated activity report generation with advanced analytics dashboard and medical data visualization.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content education-item">
+                            <h3>Software Engineering - Bachelor's Degree</h3>
+                            <h4>Higher School of Technology Safi | 2022 - 2024</h4>
+                            <p>Specialized in software engineering with focus on web development, database management, and software architecture. Graduated with distinction and comprehensive knowledge in modern development practices.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content experience-item">
+                            <h3>Software Developer Intern</h3>
+                            <h4>Higher School of Technology Safi | April 2023 - June 2023</h4>
+                            <p>Architected and developed comprehensive web platform automating library operations including loan management, return processing, and membership administration with analytics dashboard.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content education-item">
+                            <h3>University Technology Diploma</h3>
+                            <h4>Higher School of Technology Safi | 2020 - 2022</h4>
+                            <p>Foundation in computer science, programming fundamentals, database systems, and web technologies. Strong academic performance with practical project experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>☸️ Container Orchestration & Service Mesh</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Helm</span>
+                            <span class="skill-tag">Istio</span>
+                            <span class="skill-tag">Kiali</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>☁️ Cloud Infrastructure & CI/CD</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">AWS EKS</span>
+                            <span class="skill-tag">Terraform</span>
+                            <span class="skill-tag">ArgoCD</span>
+                            <span class="skill-tag">Jenkins</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">GitOps</span>
+                            <span class="skill-tag">SonarQube</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>📊 Observability & Monitoring</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Prometheus</span>
+                            <span class="skill-tag">Grafana</span>
+                            <span class="skill-tag">ELK Stack</span>
+                            <span class="skill-tag">Zipkin</span>
+                            <span class="skill-tag">Kiali</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>🏗️ Microservices & Backend Development</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Spring Boot</span>
+                            <span class="skill-tag">Spring Cloud</span>
+                            <span class="skill-tag">Laravel</span>
+                            <span class="skill-tag">Apache Kafka</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">Event-Driven</span>
+                            <span class="skill-tag">API Gateway</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>💻 Programming & AI/ML</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Java 17+</span>
+                            <span class="skill-tag">Go</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">Bash</span>
+                            <span class="skill-tag">Hugging Face</span>
+                            <span class="skill-tag">OpenAI API</span>
+                            <span class="skill-tag">TensorFlow</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>🌐 Frontend Technologies</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Next.js</span>
+                            <span class="skill-tag">Angular</span>
+                            <span class="skill-tag">TailwindCSS</span>
+                            <span class="skill-tag">ShadCN UI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card featured-project">
+                        <div class="project-header">
+                            <h3>NexusCommerce: Complete Cloud-Native E-Commerce Ecosystem</h3>
+                            <p>Enterprise-grade microservices platform demonstrating modern DevOps practices with 8 production microservices, multi-environment GitOps deployment, comprehensive observability stack, and service mesh architecture. Features event-driven communication, zero-downtime deployments, and advanced monitoring.</p>
+                            <div class="project-stats">
+                                <span class="stat-item">70% API call reduction</span>
+                                <span class="stat-item">Sub-200ms response times</span>
+                                <span class="stat-item">Zero-downtime deployments</span>
+                                <span class="stat-item">Multi-environment K8s</span>
+                                <span class="stat-item">Istio Service Mesh</span>
+                                <span class="stat-item">Complete Observability</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Java 17</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Go</span>
+                                <span class="tech-tag">Apache Kafka</span>
+                                <span class="tech-tag">AWS EKS</span>
+                                <span class="tech-tag">Terraform</span>
+                                <span class="tech-tag">Helm</span>
+                                <span class="tech-tag">Istio</span>
+                                <span class="tech-tag">ArgoCD</span>
+                                <span class="tech-tag">Jenkins</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Redis</span>
+                                <span class="tech-tag">Prometheus</span>
+                                <span class="tech-tag">ELK Stack</span>
+                                <span class="tech-tag">Kiali</span>
+                            </div>
+                            <div class="repo-grid">
+                                <div class="repo-category">
+                                    <h4>Core Platform</h4>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">8 Microservices Architecture</a>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">Event-Driven Communication</a>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">API Gateway & BFF Pattern</a>
+                                </div>
+                                <div class="repo-category">
+                                    <h4>Frontend Applications</h4>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">Next.js 15 Customer Portal</a>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">React Admin Dashboard</a>
+                                </div>
+                                <div class="repo-category">
+                                    <h4>Infrastructure & DevOps</h4>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">Production Helm Charts</a>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">Terraform AWS Infrastructure</a>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">GitOps ArgoCD Deployment</a>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">Configuration Management</a>
+                                </div>
+                            </div>
+                            <div class="architecture-links">
+                                <h4>Architecture & Documentation:</h4>
+                                <a href="https://app.eraser.io/workspace/el7sNnsJe96fEgJclztv" target="_blank">Microservice Architecture</a>
+                                <a href="https://app.eraser.io/workspace/g1l4mIvbfEltNHNNYP0G" target="_blank">Kubernetes Infrastructure</a>
+                                <a href="https://app.eraser.io/workspace/xb6q22SZFLAD0ftPeuNO" target="_blank">GitOps Pipeline Flow</a>
+                                <a href="https://app.eraser.io/workspace/W0KDmrzgWrCJ2C659BIG?origin=share" target="_blank">AWS & K8S EKS</a>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">Main Repository</a>
+                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7362223852988329985/" target="_blank">LinkedIn Post - More Info</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="secondary-projects">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>🏠 Room Reservation Microservices System</h3>
+                            <p>Complete DevOps-focused microservices platform for room reservation with comprehensive CI/CD pipeline, containerization, and monitoring. Features Jenkins automation, Docker deployment, multi-environment configuration, and robust testing workflows with security scanning and automated notifications.</p>
+                            <div class="project-stats">
+                                <span class="stat-item">🔄 Jenkins CI/CD Pipeline</span>
+                                <span class="stat-item">🐳 Docker & Docker Compose</span>
+                                <span class="stat-item">🔒 Security Scanning with Trivy</span>
+                                <span class="stat-item">🚀 Multi-stage Deployment</span>
+                                <span class="stat-item">✅ Automated Testing</span>
+                                <span class="stat-item">📧 Email Notifications</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Jenkins</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">Trivy Security Scan</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">Maven</span>
+                                <span class="tech-tag">JUnit Testing</span>
+                                <span class="tech-tag">Email Integration</span>
+                            </div>
+                            <div class="architecture-links">
+                                <h4>🔧 DevOps Features:</h4>
+                                <a href="#" target="_blank">Multi-stage Jenkins Pipeline</a>
+                                <a href="#" target="_blank">Docker Containerization</a>
+                                <a href="#" target="_blank">Security Vulnerability Scanning</a>
+                                <a href="#" target="_blank">Automated Testing & Reporting</a>
+                                <a href="#" target="_blank">Email Notification System</a>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ZakariaRek/room-reservation-system-auth-service" target="_blank">🔗 GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>🏥 MedConnect Healthcare Platform</h3>
+                            <p>Full-stack web application for digitizing medical records and automated activity report generation for occupational health units. Features real-time analytics, patient management, and comprehensive reporting system.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">Express.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">JWT</span>
+                                <span class="tech-tag">Chart.js</span>
+                                <span class="tech-tag">Docker</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">🔗 GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>📚 Library Management System</h3>
+                            <p>Comprehensive web platform automating library operations including loan management, return processing, membership administration, analytics dashboard, and automated notification system with advanced search capabilities.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">Prisma ORM</span>
+                                <span class="tech-tag">TailwindCSS</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">🔗 GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>🩺 AI-Powered Blood Pressure Monitor</h3>
+                            <p>Revolutionary healthcare application with Next.js web dashboard for healthcare providers. Features AI-powered OCR using Hugging Face models for automatic blood pressure reading extraction from device photos, real-time Firebase communication, personalized health insights with OpenAI integration, and comprehensive patient management system.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">Laravel</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Hugging Face OCR</span>
+                                <span class="tech-tag">OpenAI API</span>
+                                <span class="tech-tag">Firebase</span>
+                                <span class="tech-tag">MongoDB Atlas</span>
+                                <span class="tech-tag">JWT Auth</span>
+                                <span class="tech-tag">Real-time Chat</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ZakariaRek/Blood-Pressure" target="_blank">🔗 GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>🏆 TERRAP-POD - UNESCO Hackathon Winner</h3>
+                            <p><strong>1st Place Winner</strong> at UNESCO and Cadi Ayyad University-sponsored hackathon. Innovative modular vertical farming solution addressing Morocco's agricultural water challenges using IoT and sustainable technologies.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">IoT Sensors</span>
+                                <span class="tech-tag">Arduino</span>
+                                <span class="tech-tag">Sustainability</span>
+                                <span class="tech-tag">Agriculture Tech</span>
+                                <span class="tech-tag">Water Management</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.linkedin.com/in/zakaria-rekhla-2116a72a1/" target="_blank">🔗 LinkedIn Post</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section id="education-experience">
+            <div class="container">
+                <h2 class="section-title">Education & Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Full Stack Developer Intern</h3>
+                            <h4>Norsys Africa (Marrakech) | May 2024 - June 2024</h4>
+                            <p>Developed revolutionary healthcare application with dual platforms and integrated cutting-edge AI technologies including Hugging Face OCR-Donut-CORD model and OpenAI API for personalized health recommendations.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Full Stack Developer Intern</h3>
+                            <h4>Ministry of Health and Social Protection (Safi) | March 2024 - June 2024</h4>
+                            <p>Led development of MedConnect: comprehensive web application for digitizing medical records and automated activity report generation with advanced analytics dashboard and medical data visualization.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Software Engineering - Bachelor's Degree</h3>
+                            <h4>Higher School of Technology Safi | 2022 - 2024</h4>
+                            <p>Specialized in software engineering with focus on web development, database management, and software architecture. Graduated with distinction and comprehensive knowledge in modern development practices.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Software Developer Intern</h3>
+                            <h4>Higher School of Technology Safi | April 2023 - June 2023</h4>
+                            <p>Architected and developed comprehensive web platform automating library operations including loan management, return processing, and membership administration with analytics dashboard.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>University Technology Diploma</h3>
+                            <h4>Higher School of Technology Safi | 2020 - 2022</h4>
+                            <p>Foundation in computer science, programming fundamentals, database systems, and web technologies. Strong academic performance with practical project experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <section id="certifications">
+            <div class="container">
+                <h2 class="section-title">Certifications & Recognition</h2>
+                <div class="certifications-grid">
+                    <div class="cert-card">
+                        <div class="cert-icon">☸️</div>
+                        <h3>KCNA: Kubernetes and Cloud Native Associate</h3>
+                        <p>Cloud Native Computing Foundation (CNCF)</p>
+                        <span class="badge">Certified 2024</span>
+                        <a href="https://www.credly.com/badges/ff85a052-4798-41e9-8def-b84ff9a3f97c/public_url" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; font-size: 0.9rem;">
+                            <i class="fas fa-external-link-alt"></i> View Certificate
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon">🐧</div>
+                        <h3>LFS250: Kubernetes and Cloud Native Essentials</h3>
+                        <p>Linux Foundation</p>
+                        <span class="badge">Completed 2024</span>
+                        <a href="https://www.credly.com/badges/c118d1fa-793e-412d-90f4-bca31368cf5f/public_url" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; font-size: 0.9rem;">
+                            <i class="fas fa-external-link-alt"></i> View Certificate
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon">🌐</div>
+                        <h3>CCNA: Switching, Routing, and Wireless Essentials</h3>
+                        <p>Cisco Systems</p>
+                        <span class="badge">Certified 2023</span>
+                        <a href="https://www.credly.com/badges/27bf579b-aa50-4a5f-bb9d-420ca002bde0/public_url" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; font-size: 0.9rem;">
+                            <i class="fas fa-external-link-alt"></i> View Certificate
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon">📡</div>
+                        <h3>Introduction to Network Operation 1.0</h3>
+                        <p>Internet Society</p>
+                        <span class="badge">Completed 2023</span>
+                        <a href="https://certificates.isoc.org/d1e504a3-ca1d-4b62-9a3b-5e378c0d8b14#gs.b6ah1i" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; font-size: 0.9rem;">
+                            <i class="fas fa-external-link-alt"></i> View Certificate
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Let's Connect</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p>zakariaest49@gmail.com</p>
+                        <a href="mailto:zakariaest49@gmail.com" class="btn btn-secondary">Send Email</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <p>+212 648 175 782</p>
+                        <a href="tel:+212648175782" class="btn btn-secondary">Call Now</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <h3>LinkedIn</h3>
+                        <p>Professional Network</p>
+                        <a href="https://linkedin.com/in/zakaria-rekhla-2116a72a1" target="_blank" class="btn btn-secondary">Connect</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>GitHub</h3>
+                        <p>Open Source Projects</p>
+                        <a href="https://github.com/ZakariaRek" target="_blank" class="btn btn-secondary">Follow</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 75;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 15 + 8) + 's';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize particles
+        createParticles();
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animatable elements
+        document.querySelectorAll('.skill-category, .project-card, .timeline-item, .cert-card, .contact-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add typing effect to hero subtitle
+        const subtitle = document.querySelector('.hero .subtitle');
+        const text = subtitle.textContent;
+        subtitle.textContent = '';
+        
+        function typeText(element, text, delay = 120) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, delay);
+                }
+            }
+            setTimeout(type, 2000);
+        }
+
+        typeText(subtitle, text);
+
+        // Enhanced button interactions
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.02)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.3);
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                `;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const rippleCSS = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        const style = document.createElement('style');
+        style.textContent = rippleCSS;
+        document.head.appendChild(style);
+
+        // Enhanced skill tag interactions
+        document.querySelectorAll('.skill-tag, .tech-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.08) rotate(1deg)';
+                this.style.boxShadow = '0 4px 20px rgba(102, 126, 234, 0.3)';
+            });
+            
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Add intersection observer for counter animations
+        const counters = document.querySelectorAll('.stat-item');
+        counters.forEach(counter => {
+            observer.observe(counter);
+        });
+
+        // Console easter egg
+        console.log(`
+        Welcome to Zakaria Rekhla's Portfolio!
+        
+        Interested in the code? Check out my GitHub:
+        https://github.com/ZakariaRek
+        
+        Let's build something amazing together!
+        `);
+    </script>
+</body>
+</html>
