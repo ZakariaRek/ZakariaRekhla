@@ -709,6 +709,65 @@
             color: #764ba2;
         }
 
+        /* Project Media Gallery */
+        .project-media {
+            padding: 0 2.5rem 2.5rem;
+            margin-top: 1rem;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .media-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .media-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+
+        .media-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-video {
+            padding: 0 2.5rem 2.5rem;
+            margin-top: 1rem;
+        }
+
+        .video-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            margin-top: 1rem;
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+            max-height: 500px;
+        }
+
         /* Additional Projects Grid for smaller projects */
         .secondary-projects {
             display: grid;
@@ -961,6 +1020,19 @@
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+                font-size: 2rem;
+                width: 45px;
+                height: 45px;
+            }
+
+            .lightbox-content {
+                max-width: 95%;
+                max-height: 85%;
+            }
+
             .nav-links {
                 display: none;
             }
@@ -1172,6 +1244,20 @@
                 padding: 10px 0;
             }
 
+            .project-media,
+            .project-video {
+                padding: 0 2rem 2rem;
+            }
+
+            .media-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .media-item img {
+                height: 250px;
+            }
+
             .cert-card {
                 padding: 2rem;
                 min-height: 280px;
@@ -1214,6 +1300,19 @@
         }
 
         @media (max-width: 480px) {
+            .lightbox-close {
+                top: 5px;
+                right: 5px;
+                font-size: 1.8rem;
+                width: 40px;
+                height: 40px;
+            }
+
+            .lightbox-content {
+                max-width: 98%;
+                max-height: 80%;
+            }
+
             .profile-image {
                 width: 200px;
                 height: 200px;
@@ -1283,6 +1382,15 @@
                 padding: 25px 1.5rem 1.5rem;
                 gap: 1.5rem;
             }
+
+            .project-media,
+            .project-video {
+                padding: 0 1.5rem 1.5rem;
+            }
+
+            .media-item img {
+                height: 200px;
+            }
         }
 
         @media (max-width: 320px) {
@@ -1318,6 +1426,84 @@
             .cert-card {
                 padding: 1rem;
                 min-height: 180px;
+            }
+        }
+
+        /* Image Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(102, 126, 234, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            background: rgba(102, 126, 234, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(102, 126, 234, 0.5);
+        }
+
+        .lightbox-close:hover {
+            background: rgba(102, 126, 234, 0.4);
+            transform: rotate(90deg);
+            border-color: #667eea;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
             }
         }
 
@@ -1747,6 +1933,14 @@
                                 <span class="tech-tag">Docker</span>
                             </div>
                         </div>
+                        <div class="project-video">
+                            <div class="video-container">
+                                <video controls>
+                                    <source src="./assets/medc/1.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
                         <div class="project-links">
                             <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">
                                 <i class="fab fa-github"></i> GitHub Repository
@@ -1765,6 +1959,22 @@
                                 <span class="tech-tag">MySQL</span>
                                 <span class="tech-tag">Prisma ORM</span>
                                 <span class="tech-tag">TailwindCSS</span>
+                            </div>
+                        </div>
+                        <div class="project-media">
+                            <div class="media-grid">
+                                <div class="media-item">
+                                    <img src="./assets/ESTS/1.png" alt="Library Management System Screenshot 1">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/ESTS/2.png" alt="Library Management System Screenshot 2">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/ESTS/3.png" alt="Library Management System Screenshot 3">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/ESTS/5.png" alt="Library Management System Screenshot 3">
+                                </div>
                             </div>
                         </div>
                         <div class="project-links">
@@ -1790,13 +2000,28 @@
                                 <span class="tech-tag">Real-time Chat</span>
                             </div>
                         </div>
+                        <div class="project-media">
+                            <div class="media-grid">
+                                <div class="media-item">
+                                    <img src="./assets/norsys/1.png" alt="AI-Powered Blood Pressure Monitor Screenshot 1">
+                                </div>
+                                
+                                <div class="media-item">
+                                    <img src="./assets/norsys/3.png" alt="AI-Powered Blood Pressure Monitor Screenshot 3">
+                                </div><div class="media-item">
+                                    <img src="./assets/norsys/2.png" alt="AI-Powered Blood Pressure Monitor Screenshot 2">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/norsys/4.png" alt="AI-Powered Blood Pressure Monitor Screenshot 3">
+                                </div>
+                            </div>
+                        </div>
                         <div class="project-links">
                             <a href="https://github.com/ZakariaRek/Blood-Pressure" target="_blank">
                                 <i class="fab fa-github"></i> GitHub Repository
                             </a>
                         </div>
                     </div>
-
                     <div class="project-card">
                         <div class="project-header">
                             <h3><i class="fas fa-trophy"></i> TERRAP-POD - UNESCO Hackathon Winner</h3>
@@ -1807,6 +2032,23 @@
                                 <span class="tech-tag">Sustainability</span>
                                 <span class="tech-tag">Agriculture Tech</span>
                                 <span class="tech-tag">Water Management</span>
+                            </div>
+                        </div>
+                        <div class="project-media">
+                            <div class="media-grid">
+                               
+                                <div class="media-item">
+                                    <img src="./assets/terra-pod/1.jpg" alt="Library Management System Screenshot 2">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/terra-pod/2.jpg" alt="Library Management System Screenshot 3">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/terra-pod/3.jpg" alt="Library Management System Screenshot 1">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/terra-pod/4.JPG" alt="Library Management System Screenshot 1">
+                                </div>
                             </div>
                         </div>
                         <div class="project-links">
@@ -1861,6 +2103,14 @@
             </div>
         </section>
     </main>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightbox-close">&times;</span>
+            <img src="" alt="Enlarged view" id="lightbox-img">
+        </div>
+    </div>
 
     <script>
         // Smooth scrolling for navigation links
@@ -2082,6 +2332,44 @@
         // Initialize navbar highlighting and timeline animation on page load
         handleScroll();
 
+        // Lightbox functionality for images
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        // Add click event to all media items
+        document.querySelectorAll('.media-item img').forEach(img => {
+            img.addEventListener('click', function() {
+                lightbox.classList.add('active');
+                lightboxImg.src = this.src;
+                lightboxImg.alt = this.alt;
+                // Prevent body scroll when lightbox is open
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close lightbox when clicking the close button
+        lightboxClose.addEventListener('click', function() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close lightbox when clicking outside the image
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
         // Console easter egg
         console.log(`
         Welcome to Zakaria Rekhla's Portfolio!
@@ -2093,6 +2381,7 @@
         • Synchronized animated timeline lines
         • Progressive timeline point animations
         • Enhanced parallax and interaction effects
+        • Interactive image lightbox - click any project image to enlarge!
         
         Interested in the code? Check out my GitHub:
         https://github.com/ZakariaRek
