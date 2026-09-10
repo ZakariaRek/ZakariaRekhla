@@ -1,0 +1,3175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Zakaria Rekhla - DevOps &amp; Cloud Engineer</title>
+    <link rel="icon" sizes="20" type="image/png" href="./assets/icon.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #08081a 0%, #141428 50%, #0f1836 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(8, 8, 26, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(8, 8, 26, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-links a {
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23667eea" stop-opacity="0.1"/><stop offset="100%" stop-color="%23764ba2" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Updated Hero Content Layout */
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+            padding: 100px 0;
+        }
+
+        /* Profile Image Styles */
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInLeft 1s ease;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 
+                0 0 30px rgba(102, 126, 234, 0.4),
+                0 0 60px rgba(118, 75, 162, 0.2);
+            transition: all 0.3s ease;
+            animation: profilePulse 4s ease-in-out infinite;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            border-color: rgba(102, 126, 234, 0.6);
+            box-shadow: 
+                0 0 40px rgba(102, 126, 234, 0.6),
+                0 0 80px rgba(118, 75, 162, 0.3);
+        }
+
+        @keyframes profilePulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 30px rgba(102, 126, 234, 0.4),
+                    0 0 60px rgba(118, 75, 162, 0.2);
+            }
+            50% {
+                box-shadow: 
+                    0 0 40px rgba(102, 126, 234, 0.6),
+                    0 0 80px rgba(118, 75, 162, 0.3);
+            }
+        }
+
+        /* Hero Text Content */
+        .hero-text {
+            animation: fadeInRight 1s ease 0.3s both;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #667eea 50%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            color: #c0c0c0;
+            max-width: 800px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .achievement-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #667eea;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 1s both;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-resume {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .btn-resume:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.6);
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            margin-top: 4rem;
+            background: linear-gradient(135deg, #ffffff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Updated Education & Experience Section */
+        .education-experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-column {
+            position: relative;
+        }
+
+        .column-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            color: #667eea;
+        }
+
+        .experience-column .column-title {
+            color: #667eea;
+        }
+
+        .education-column .column-title {
+            color: #764ba2;
+        }
+
+        .timeline-vertical {
+            position: relative;
+        }
+
+        .timeline-vertical::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(102, 126, 234, 0.2);
+        }
+
+        .timeline-vertical::after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            width: 2px;
+            height: 0%;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            transition: height 2s ease-in-out;
+            z-index: 2;
+        }
+
+        .timeline-vertical.animate-line::after {
+            height: 100%;
+        }
+
+        .education-column .timeline-vertical::after {
+            background: linear-gradient(to bottom, #764ba2, #667eea);
+        }
+
+        .timeline-entry {
+            margin: 2rem 0;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 10px;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3);
+            z-index: 3;
+            transition: all 0.5s ease;
+        }
+
+        .timeline-entry.animate-point::before {
+            animation: timelinePulse 2s ease-in-out infinite;
+        }
+
+        .education-column .timeline-entry::before {
+            background: #764ba2;
+            box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.3);
+        }
+
+        .timeline-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .timeline-card.show {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s ease;
+        }
+
+        .experience-column .timeline-card {
+            border-left: 3px solid #667eea;
+        }
+
+        .education-column .timeline-card {
+            border-left: 3px solid #764ba2;
+        }
+
+        .timeline-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .experience-column .timeline-card h3 {
+            color: #667eea;
+        }
+
+        .education-column .timeline-card h3 {
+            color: #764ba2;
+        }
+
+        .timeline-card h4 {
+            color: #a0a0a0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-card p {
+            color: #c0c0c0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Skills Section - Animations Removed */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 8px 14px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(102, 126, 234, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Projects Section - Animations Removed */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .featured-project {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+        }
+
+        .featured-project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.25);
+        }
+
+        .project-header {
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+
+        .project-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .featured-project h3 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-card p {
+            color: #c0c0c0;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .project-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .stat-item {
+            background: rgba(102, 126, 234, 0.25);
+            color: #667eea;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(102, 126, 234, 0.4);
+            transform: scale(1.05);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(118, 75, 162, 0.25);
+            color: #c0c0c0;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(118, 75, 162, 0.3);
+        }
+
+        .repo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .repo-category h4 {
+            color: #667eea;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .repo-category a {
+            display: block;
+            color: #a0a0a0;
+            text-decoration: none;
+            padding: 8px 12px;
+            margin: 4px 0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .repo-category a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.15);
+            transform: translateX(5px);
+        }
+
+        .architecture-links {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(118, 75, 162, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(118, 75, 162, 0.2);
+        }
+
+        .architecture-links h4 {
+            color: #764ba2;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .architecture-links a {
+            display: inline-block;
+            color: #c0c0c0;
+            text-decoration: none;
+            padding: 8px 16px;
+            margin: 6px 8px 6px 0;
+            background: rgba(118, 75, 162, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border: 1px solid rgba(118, 75, 162, 0.3);
+        }
+
+        .architecture-links a:hover {
+            color: #764ba2;
+            background: rgba(118, 75, 162, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .project-links {
+            padding: 20px 2.5rem 2.5rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .project-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: #764ba2;
+        }
+
+        /* Project Media Gallery */
+        .project-media {
+            padding: 0 2.5rem 2.5rem;
+            margin-top: 1rem;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .media-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .media-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+
+        .media-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-video {
+            padding: 0 2.5rem 2.5rem;
+            margin-top: 1rem;
+        }
+
+        .video-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            margin-top: 1rem;
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+            max-height: 500px;
+        }
+
+        /* Additional Projects Grid for smaller projects */
+        .secondary-projects {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Updated Certifications Section - Animations Removed */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cert-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 250px;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .cert-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #667eea;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 4rem;
+        }
+
+        .cert-icon img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .cert-content {
+            flex-grow: 1;
+        }
+
+        .cert-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .cert-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cert-link:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 3rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .contact-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card .btn {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(120px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.6), 0 0 30px rgba(102, 126, 234, 0.4);
+            }
+        }
+
+        @keyframes drawLine {
+            from {
+                height: 0%;
+            }
+            to {
+                height: 100%;
+            }
+        }
+
+        @keyframes timelinePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 8px rgba(102, 126, 234, 0.5);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1.5s ease forwards;
+            opacity: 0;
+        }
+
+        .fade-in-left {
+            animation: fadeInLeft 1.5s ease forwards;
+            opacity: 0;
+        }
+
+        .fade-in-right {
+            animation: fadeInRight 1.5s ease forwards;
+            opacity: 0;
+        }
+
+        /* ---------- Certifications: issuer badges, descriptions, featured card ---------- */
+        .cert-card {
+            position: relative;
+        }
+
+        .cert-issuer {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 0.9rem;
+        }
+
+        .cert-issuer.cncf {
+            background: rgba(102, 126, 234, 0.15);
+            color: #8b9cf4;
+            border: 1px solid rgba(102, 126, 234, 0.35);
+        }
+
+        .cert-issuer.aws {
+            background: rgba(255, 153, 0, 0.12);
+            color: #ffb84d;
+            border: 1px solid rgba(255, 153, 0, 0.35);
+        }
+
+        .cert-issuer.cisco {
+            background: rgba(0, 188, 235, 0.12);
+            color: #4fd3ff;
+            border: 1px solid rgba(0, 188, 235, 0.35);
+        }
+
+        .cert-desc {
+            color: #a0a0a0;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        .cert-featured {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            border: 2px solid rgba(102, 126, 234, 0.45);
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+            animation: certGlow 4s ease-in-out infinite;
+        }
+
+        .cert-featured:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.35);
+        }
+
+        .cert-featured .cert-icon {
+            color: #8b9cf4;
+            filter: drop-shadow(0 0 12px rgba(102, 126, 234, 0.6));
+        }
+
+        @keyframes certGlow {
+            0%, 100% {
+                box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
+            }
+            50% {
+                box-shadow: 0 8px 40px rgba(102, 126, 234, 0.4), 0 0 60px rgba(118, 75, 162, 0.2);
+            }
+        }
+
+        .cert-top-tag {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            white-space: nowrap;
+        }
+
+        .additional-training {
+            max-width: 1000px;
+            margin: 3rem auto 0;
+        }
+
+        .additional-training h3 {
+            text-align: center;
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+
+        .training-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .training-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            color: #a0a0a0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .training-item i {
+            color: #667eea;
+            opacity: 0.7;
+        }
+
+        .training-item:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.08);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* ---------- Experience: featured role, bullets, tags, demo video ---------- */
+        .timeline-card.featured-role {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.10) 0%, rgba(118, 75, 162, 0.10) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-left: 3px solid #667eea;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.12);
+        }
+
+        .role-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #8b9cf4;
+            background: rgba(102, 126, 234, 0.15);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+        }
+
+        .role-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1rem;
+        }
+
+        .role-bullets li {
+            position: relative;
+            padding-left: 1.4rem;
+            color: #c0c0c0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.6rem;
+        }
+
+        .role-bullets li::before {
+            content: '\25B8';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .timeline-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .timeline-tags .tech-tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+        }
+
+        .demo-video {
+            margin-top: 1.5rem;
+            scroll-margin-top: 120px;
+        }
+
+        .demo-video-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #8b9cf4;
+            margin-bottom: 0.75rem;
+        }
+
+        .demo-video-frame {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #0a0a1e;
+            border: 1px solid rgba(102, 126, 234, 0.35);
+            box-shadow: 0 0 25px rgba(102, 126, 234, 0.2), 0 0 50px rgba(118, 75, 162, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .demo-video-frame:hover {
+            border-color: rgba(102, 126, 234, 0.6);
+            box-shadow: 0 0 35px rgba(102, 126, 234, 0.35), 0 0 70px rgba(118, 75, 162, 0.15);
+        }
+
+        .demo-video-frame video {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .demo-video-placeholder {
+            display: none;
+            position: absolute;
+            inset: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-align: center;
+            padding: 1.5rem;
+            color: #c0c0c0;
+            font-size: 0.95rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.12) 100%);
+        }
+
+        .demo-video-placeholder i {
+            font-size: 2.5rem;
+            color: #667eea;
+            opacity: 0.8;
+        }
+
+        .demo-video-placeholder small {
+            color: #808080;
+            font-size: 0.8rem;
+        }
+
+        .demo-video-frame.is-missing video {
+            display: none;
+        }
+
+        .demo-video-frame.is-missing .demo-video-placeholder {
+            display: flex;
+        }
+
+        /* ---------- Projects: feature grid, architecture diagram ---------- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(102, 126, 234, 0.08);
+            border-color: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .feature-item h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            color: #a0a0a0;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .feature-item code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82em;
+            color: #c9b3f5;
+            background: rgba(118, 75, 162, 0.2);
+            padding: 1px 6px;
+            border-radius: 6px;
+        }
+
+        .arch-diagram {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(8, 8, 26, 0.5);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 15px;
+            overflow-x: auto;
+        }
+
+        .arch-diagram h4 {
+            color: #764ba2;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .arch-diagram svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            min-width: 720px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .arch-diagram .node-box {
+            fill: rgba(255, 255, 255, 0.05);
+            stroke: rgba(102, 126, 234, 0.5);
+            stroke-width: 1.5;
+        }
+
+        .arch-diagram .node-box.side {
+            stroke: rgba(118, 75, 162, 0.8);
+            stroke-dasharray: 5 4;
+        }
+
+        .arch-diagram .node-box.k8s {
+            fill: rgba(102, 126, 234, 0.18);
+            stroke: #667eea;
+        }
+
+        .arch-diagram .node-label {
+            fill: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            text-anchor: middle;
+        }
+
+        .arch-diagram .node-sub {
+            fill: #a0a0a0;
+            font-size: 10.5px;
+            text-anchor: middle;
+        }
+
+        .arch-diagram .edge {
+            stroke: url(#archGrad);
+            stroke-width: 2;
+            fill: none;
+            marker-end: url(#archArrow);
+        }
+
+        .arch-diagram .edge.side {
+            stroke: rgba(118, 75, 162, 0.85);
+            stroke-dasharray: 5 4;
+        }
+
+        .arch-diagram .edge-label {
+            fill: #8b9cf4;
+            font-size: 10px;
+            text-anchor: middle;
+        }
+
+        .project-links a.project-link-muted {
+            color: #a0a0a0;
+            font-weight: 500;
+            cursor: default;
+        }
+
+        .project-links a.project-link-muted:hover {
+            color: #a0a0a0;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+                font-size: 2rem;
+                width: 45px;
+                height: 45px;
+            }
+
+            .lightbox-content {
+                max-width: 95%;
+                max-height: 85%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            /* Mobile Hero Layout - Stack Vertically */
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+                padding: 40px 0;
+            }
+
+            .hero-image {
+                order: 1; /* Image first on mobile */
+            }
+
+            .hero-text {
+                order: 2; /* Text second on mobile */
+            }
+
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .hero {
+                padding: 20px;
+                height: auto;
+                min-height: 100vh;
+                margin-bottom: 40px;
+            }
+
+            #experience {
+                padding-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.6rem;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .hero .description {
+                font-size: 1.1rem;
+                text-align: center;
+                margin-bottom: 3rem;
+                line-height: 1.8;
+            }
+
+            .achievement-badges {
+                justify-content: center;
+                margin-bottom: 3rem;
+                gap: 1.2rem;
+            }
+
+            .badge {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+
+            .education-experience-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .column-title {
+                font-size: 1.8rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .timeline-vertical::before,
+            .timeline-vertical::after {
+                left: 15px;
+            }
+
+            .timeline-entry::before {
+                left: 9px;
+            }
+
+            .timeline-entry {
+                padding-left: 50px;
+                margin: 2.5rem 0;
+            }
+
+            .timeline-card {
+                padding: 1.8rem;
+            }
+
+            .timeline-card h3 {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .timeline-card h4 {
+                font-size: 1rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .timeline-card p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            .skills-grid,
+            .secondary-projects,
+            .certifications-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .skill-category {
+                padding: 2rem;
+            }
+
+            .skill-category h3 {
+                font-size: 1.4rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                gap: 1.2rem;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 350px;
+                justify-content: center;
+                padding: 16px 32px;
+                font-size: 1.1rem;
+            }
+
+            .repo-grid {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 3rem;
+                margin-top: 3rem;
+            }
+
+            .project-header {
+                padding: 2rem;
+            }
+
+            .project-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .featured-project h3 {
+                font-size: 1.8rem;
+            }
+
+            .project-card p {
+                font-size: 1rem;
+                line-height: 1.8;
+                margin-bottom: 1.5rem;
+            }
+
+            .project-stats {
+                padding: 1.5rem;
+                gap: 10px;
+            }
+
+            .stat-item {
+                font-size: 0.85rem;
+                padding: 8px 14px;
+            }
+
+            .project-tech {
+                margin-bottom: 2rem;
+                gap: 10px;
+            }
+
+            .tech-tag {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+
+            .project-links {
+                padding: 30px 2rem 2rem;
+                gap: 2rem;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .project-links a {
+                font-size: 1.1rem;
+                padding: 10px 0;
+            }
+
+            .project-media,
+            .project-video {
+                padding: 0 2rem 2rem;
+            }
+
+            .media-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .media-item img {
+                height: 250px;
+            }
+
+            .cert-card {
+                padding: 2rem;
+                min-height: 280px;
+            }
+
+            .cert-icon {
+                font-size: 3rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .cert-icon img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .cert-card h3 {
+                font-size: 1.2rem;
+                line-height: 1.5;
+            }
+
+            .cert-top-tag {
+                font-size: 0.65rem;
+                padding: 4px 12px;
+            }
+
+            .training-item {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .role-bullets li {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .arch-diagram {
+                padding: 1rem;
+            }
+
+            .project-links a.project-link-muted {
+                text-align: center;
+            }
+
+            .contact-card {
+                padding: 2rem;
+            }
+
+            .contact-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .contact-card p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 100px 0;
+            }
+
+            section:not(.hero) {
+                margin-top: -20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lightbox-close {
+                top: 5px;
+                right: 5px;
+                font-size: 1.8rem;
+                width: 40px;
+                height: 40px;
+            }
+
+            .lightbox-content {
+                max-width: 98%;
+                max-height: 80%;
+            }
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero .description {
+                font-size: 0.9rem;
+            }
+
+            .badge {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-card {
+                padding: 1rem;
+            }
+
+            .skill-category {
+                padding: 1.2rem;
+            }
+
+            .project-header {
+                padding: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .cert-card {
+                padding: 1.2rem;
+                min-height: 200px;
+            }
+
+            .project-stats {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .stat-item {
+                margin: 2px 0;
+                text-align: center;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .hero {
+                margin-bottom: 20px;
+            }
+
+            .project-links {
+                padding: 25px 1.5rem 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .project-media,
+            .project-video {
+                padding: 0 1.5rem 1.5rem;
+            }
+
+            .media-item img {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .hero {
+                padding: 0 10px;
+            }
+
+            .profile-image {
+                width: 180px;
+                height: 180px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .timeline-card {
+                padding: 0.8rem;
+            }
+
+            .skill-category {
+                padding: 1rem;
+            }
+
+            .project-header {
+                padding: 1rem;
+            }
+
+            .cert-card {
+                padding: 1rem;
+                min-height: 180px;
+            }
+        }
+
+        /* Image Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(102, 126, 234, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            background: rgba(102, 126, 234, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(102, 126, 234, 0.5);
+        }
+
+        .lightbox-close:hover {
+            background: rgba(102, 126, 234, 0.4);
+            transform: rotate(90deg);
+            border-color: #667eea;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(102, 126, 234, 0.5);
+            border-radius: 50%;
+            animation: float-particle 10s infinite linear;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <nav id="navbar">
+        <div class="container">
+            <div class="logo">Zakaria Rekhla</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main style="padding-top: 40px;">
+        <section id="home" class="hero" >
+            <div class="container">
+                <div class="hero-content">
+                    <!-- Profile Image Column -->
+                    <div class="hero-image" >
+                        <img src="./assets/image.jpg" alt="Zakaria Rekhla" class="profile-image">
+                    </div>
+                    
+                    <!-- Text Content Column -->
+                    <div class="hero-text">
+                        <h1>Zakaria Rekhla</h1>
+                        <p class="subtitle">DevOps &amp; Cloud Engineer</p>
+                        <p class="description">
+                            DevOps &amp; Cloud Engineer building cloud-native microservices platforms on Kubernetes and AWS. I design GitOps-driven CI/CD automation, multi-cluster delivery, and observability so that every git commit becomes a safe, repeatable, zero-downtime deployment.
+                        </p>
+                        <div class="achievement-badges">
+                            <span class="badge">CKS · CKA · KCSA · KCNA</span>
+                            <span class="badge">AWS Certified</span>
+                            <span class="badge">Multi-Cluster GitOps</span>
+                            <span class="badge">UNESCO Hackathon Winner</span>
+                        </div>
+                        <div class="cta-buttons">
+                            <a href="./assets/Zakarai_Rekhla_resume.pdf" download class="btn btn-resume">Download Resume</a>
+                            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                            <a href="#projects" class="btn btn-secondary">View Projects</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <section id="certifications" style="margin-top: 200px;">
+            <div class="container" style="padding-top: 150px;">
+                <h2 class="section-title">Professional Certifications</h2>
+                <div class="certifications-grid">
+                    <!-- CKS: featured / top certification -->
+                    <div class="cert-card cert-featured">
+                        <span class="cert-top-tag"><i class="fas fa-star"></i> Top Certification</span>
+                        <div class="cert-icon">
+                            <!-- TODO: drop cks.png into assets/ and swap this icon for <img src="assets/cks.png" alt="CKS Certification" /> -->
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="cert-content">
+                            <span class="cert-issuer cncf"><i class="fas fa-dharmachakra"></i> CNCF</span>
+                            <h3>CKS: Certified Kubernetes Security Specialist</h3>
+                            <p class="cert-desc">Cluster hardening, supply-chain security, runtime threat detection, network policies, and admission control on production Kubernetes.</p>
+                        </div>
+                        <!-- TODO: add CKS Credly URL as href below -->
+                        <a href="https://linkedin.com/in/zakaria-rekhla-2116a72a1" target="_blank" class="cert-link">
+                            <i class="fab fa-linkedin"></i>
+                            View on LinkedIn
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <img src="assets/cka.png" alt="CKA Certification" />
+                        </div>
+                        <div class="cert-content">
+                            <span class="cert-issuer cncf"><i class="fas fa-dharmachakra"></i> CNCF</span>
+                            <h3>CKA: Certified Kubernetes Administrator</h3>
+                            <p class="cert-desc">Cluster installation, networking, storage, workload scheduling, upgrades, and troubleshooting of Kubernetes clusters.</p>
+                        </div>
+                        <a href="https://www.credly.com/badges/ee1c20fb-3327-4c8d-9b80-10f2ed0ebe3a/linked_in_profile" target="_blank" class="cert-link">
+                            <i class="fas fa-certificate"></i>
+                            View Credential
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <!-- TODO: drop kcsa.png into assets/ and swap this icon for <img src="assets/kcsa.png" alt="KCSA Certification" /> -->
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="cert-content">
+                            <span class="cert-issuer cncf"><i class="fas fa-dharmachakra"></i> CNCF</span>
+                            <h3>KCSA: Kubernetes and Cloud Native Security Associate</h3>
+                            <p class="cert-desc">Cloud-native security foundations: the 4Cs model, Pod Security Standards, threat modeling, and compliance frameworks.</p>
+                        </div>
+                        <!-- TODO: add KCSA Credly URL as href below -->
+                        <a href="https://linkedin.com/in/zakaria-rekhla-2116a72a1" target="_blank" class="cert-link">
+                            <i class="fab fa-linkedin"></i>
+                            View on LinkedIn
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <img src="assets/KCNA.png" alt="KCNA Certification" />
+                        </div>
+                        <div class="cert-content">
+                            <span class="cert-issuer cncf"><i class="fas fa-dharmachakra"></i> CNCF</span>
+                            <h3>KCNA: Kubernetes and Cloud Native Associate</h3>
+                            <p class="cert-desc">Cloud-native fundamentals: container orchestration, Kubernetes architecture, observability, and application delivery.</p>
+                        </div>
+                        <a href="https://www.credly.com/badges/ff85a052-4798-41e9-8def-b84ff9a3f97c/public_url" target="_blank" class="cert-link">
+                            <i class="fas fa-certificate"></i>
+                            View Credential
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <!-- TODO: drop aws-ccp.png into assets/ and swap this icon for <img src="assets/aws-ccp.png" alt="AWS Certified Cloud Practitioner" /> -->
+                            <i class="fab fa-aws"></i>
+                        </div>
+                        <div class="cert-content">
+                            <span class="cert-issuer aws"><i class="fab fa-aws"></i> AWS</span>
+                            <h3>AWS CCP: AWS Certified Cloud Practitioner</h3>
+                            <p class="cert-desc">Core AWS services, the shared responsibility model, pricing and billing, and Well-Architected best practices.</p>
+                        </div>
+                        <!-- TODO: add AWS CCP Credly URL as href below -->
+                        <a href="https://linkedin.com/in/zakaria-rekhla-2116a72a1" target="_blank" class="cert-link">
+                            <i class="fab fa-linkedin"></i>
+                            View on LinkedIn
+                        </a>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <img src="assets/CCNA.png" alt="CCNA Certification" />
+                        </div>
+                        <div class="cert-content">
+                            <span class="cert-issuer cisco"><i class="fas fa-network-wired"></i> Cisco</span>
+                            <h3>CCNA: Switching, Routing, and Wireless Essentials</h3>
+                            <p class="cert-desc">VLANs, inter-VLAN routing, STP, EtherChannel, OSPF fundamentals, and WLAN configuration for enterprise networks.</p>
+                        </div>
+                        <a href="https://www.credly.com/badges/27bf579b-aa50-4a5f-bb9d-420ca002bde0/public_url" target="_blank" class="cert-link">
+                            <i class="fas fa-certificate"></i>
+                            View Credential
+                        </a>
+                    </div>
+                </div>
+
+                <!-- De-emphasized additional training (kept for completeness) -->
+                <div class="additional-training">
+                    <h3>Additional Training</h3>
+                    <div class="training-list">
+                        <a href="https://www.credly.com/badges/c118d1fa-793e-412d-90f4-bca31368cf5f/public_url" target="_blank" class="training-item">
+                            <i class="fab fa-linux"></i> LFS250: Kubernetes and Cloud Native Essentials
+                        </a>
+                        <a href="https://certificates.isoc.org/d1e504a3-ca1d-4b62-9a3b-5e378c0d8b14#gs.b6ah1i" target="_blank" class="training-item">
+                            <i class="fas fa-globe"></i> Introduction to Network Operations 1.0 (ISOC)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience"  style="">
+            <div class="container">
+                <h2 class="section-title fade-in-up" style="">Education & Experience</h2>
+                <div class="education-experience-grid">
+                    <!-- Experience Column (Left) -->
+                    <div class="section-column experience-column fade-in-left">
+                        <h3 class="column-title">Professional Experience</h3>
+                        <div class="timeline-vertical">
+                            <div class="timeline-entry fade-in-up stagger-1">
+                                <div class="timeline-card featured-role">
+                                    <span class="role-tag"><i class="fas fa-bolt"></i> Latest Role</span>
+                                    <h3>DevOps / Cloud Engineer Intern</h3>
+                                    <h4>Atlas Cloud Service | February 2026 - August 2026</h4>
+                                    <ul class="role-bullets">
+                                        <li>Designed and deployed a multi-cluster GitOps platform based on Kubernetes and Rancher, enabling automated application delivery across environments.</li>
+                                        <li>Set up CI/CD pipelines with GitLab CI/CD and Helm, improving deployment consistency and reducing manual errors.</li>
+                                        <li>Built a full-stack catalogue platform (Next.js + Spring Boot) letting users self-service deploy Helm charts to Rancher-managed clusters via GitOps, with real-time SSE deployment status, a Redis-cached API layer, and Vault-backed secrets via External Secrets Operator.</li>
+                                    </ul>
+                                    <div class="timeline-tags">
+                                        <span class="tech-tag">Kubernetes</span>
+                                        <span class="tech-tag">Rancher</span>
+                                        <span class="tech-tag">Fleet</span>
+                                        <span class="tech-tag">GitLab CI/CD</span>
+                                        <span class="tech-tag">Helm</span>
+                                        <span class="tech-tag">Harbor</span>
+                                        <span class="tech-tag">HashiCorp Vault</span>
+                                        <span class="tech-tag">Redis</span>
+                                        <span class="tech-tag">Spring Boot</span>
+                                        <span class="tech-tag">Next.js</span>
+                                        <span class="tech-tag">Keycloak</span>
+                                        <span class="tech-tag">PostgreSQL</span>
+                                    </div>
+
+                                    <!-- Platform demo video -->
+                                    <!-- TODO: drop atlas-cloud-demo.mp4 into assets/videos/ (optional poster: assets/videos/atlas-cloud-demo-poster.jpg) -->
+                                    <div class="demo-video" id="atlas-demo">
+                                        <div class="demo-video-label"><i class="fas fa-play-circle"></i> Platform demo: GitOps deploy wizard · Fleet sync · dashboard</div>
+                                        <div class="demo-video-frame">
+                                            <video controls muted playsinline preload="metadata" poster="./assets/videos/atlas-cloud-demo-poster.jpg">
+                                                <source src="./assets/videos/atlas-cloud-demo.mp4" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <div class="demo-video-placeholder">
+                                                <i class="fas fa-film"></i>
+                                                <span>Demo recording coming soon</span>
+                                                <small>Catalogue ACS deploy wizard, Fleet sync and dashboard walkthrough</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-entry fade-in-up stagger-2">
+                                <div class="timeline-card">
+                                    <h3>Full Stack Developer Intern</h3>
+                                    <h4>Norsys Africa (Marrakech) | May 2024 - June 2024</h4>
+                                    <p>Developed revolutionary healthcare application with dual platforms integrating cutting-edge AI technologies including Hugging Face OCR-Donut-CORD model and OpenAI API for personalized health recommendations.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-entry fade-in-up stagger-3">
+                                <div class="timeline-card">
+                                    <h3>Full Stack Developer Intern</h3>
+                                    <h4>Ministry of Health and Social Protection (Safi) | March 2024 - June 2024</h4>
+                                    <p>Led development of MedConnect: comprehensive web application for digitizing medical records and automated activity report generation with advanced analytics dashboard and medical data visualization.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-entry fade-in-up stagger-4">
+                                <div class="timeline-card">
+                                    <h3>Software Developer Intern</h3>
+                                    <h4>Higher School of Technology Safi | April 2023 - June 2023</h4>
+                                    <p>Architected and developed comprehensive web platform automating library operations including loan management, return processing, and membership administration with analytics dashboard.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education Column (Right) -->
+                    <div class="section-column education-column fade-in-right">
+                        <h3 class="column-title">Academic Background</h3>
+                        <div class="timeline-vertical">
+                            <div class="timeline-entry fade-in-up stagger-1">
+                                <div class="timeline-card">
+                                    <h3>Master's in Information Systems Engineering</h3>
+                                    <h4>Faculty of Sciences Semlalia Marrakech | 2024 - 2026</h4>
+                                    <p>Advanced studies in software development methodologies, information systems urbanization, quality assurance, intelligent workstation architectures, and industrial programming environments with project management focus.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-entry fade-in-up stagger-2">
+                                <div class="timeline-card">
+                                    <h3>Software Engineering - Bachelor's Degree</h3>
+                                    <h4>Higher School of Technology Safi | 2022 - 2024</h4>
+                                    <p>Specialized in software engineering with focus on web development, database management, and software architecture. Graduated with distinction and comprehensive knowledge in modern development practices.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-entry fade-in-up stagger-3">
+                                <div class="timeline-card">
+                                    <h3>University Technology Diploma</h3>
+                                    <h4>Higher School of Technology Safi | 2020 - 2022</h4>
+                                    <p>Foundation in computer science, programming fundamentals, database systems, and web technologies. Strong academic performance with practical project experience.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-dharmachakra"></i> Container Orchestration & Service Mesh</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Rancher</span>
+                            <span class="skill-tag">Fleet</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Docker Compose</span>
+                            <span class="skill-tag">Helm</span>
+                            <span class="skill-tag">Istio</span>
+                            <span class="skill-tag">Kyverno</span>
+                            <span class="skill-tag">Harbor</span>
+                            <span class="skill-tag">K3s</span>
+                            <span class="skill-tag">Minikube</span>
+                            <span class="skill-tag">Kind</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-cloud"></i> Cloud Infrastructure & CI/CD</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AWS (EKS, RDS)</span>
+                            <span class="skill-tag">Azure</span>
+                            <span class="skill-tag">Terraform</span>
+                            <span class="skill-tag">GitOps</span>
+                            <span class="skill-tag">ArgoCD</span>
+                            <span class="skill-tag">Flux</span>
+                            <span class="skill-tag">GitLab CI/CD</span>
+                            <span class="skill-tag">Jenkins</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">SonarQube</span>
+                            <span class="skill-tag">Linux</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-chart-line"></i> Observability & Monitoring</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Prometheus</span>
+                            <span class="skill-tag">Grafana</span>
+                            <span class="skill-tag">ELK Stack</span>
+                            <span class="skill-tag">Zipkin</span>
+                            <span class="skill-tag">Kiali</span>
+                            <span class="skill-tag">Distributed Tracing</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-cubes"></i> Microservices & Backend Development</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Spring Boot 3.x / 4.x</span>
+                            <span class="skill-tag">Spring Cloud</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Laravel</span>
+                            <span class="skill-tag">Apache Kafka</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">HashiCorp Vault</span>
+                            <span class="skill-tag">JWT / OAuth2</span>
+                            <span class="skill-tag">mTLS</span>
+                            <span class="skill-tag">SSL/TLS</span>
+                            <span class="skill-tag">Event-Driven</span>
+                            <span class="skill-tag">API Gateway</span>
+                            <span class="skill-tag">BFF Pattern</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> Programming & AI/ML</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Java 17 / 21</span>
+                            <span class="skill-tag">Go</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">Bash</span>
+                            <span class="skill-tag">PowerShell</span>
+                            <span class="skill-tag">Hugging Face</span>
+                            <span class="skill-tag">OpenAI API</span>
+                            <span class="skill-tag">TensorFlow</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-laptop-code"></i> Frontend Technologies</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">React 18</span>
+                            <span class="skill-tag">Next.js 15 / 16</span>
+                            <span class="skill-tag">Angular</span>
+                            <span class="skill-tag">NextAuth.js</span>
+                            <span class="skill-tag">TailwindCSS</span>
+                            <span class="skill-tag">ShadCN UI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <!-- Catalogue ACS: multi-cluster GitOps deployment platform (Atlas Cloud Service internship) -->
+                    <div class="project-card featured-project" id="catalogue-acs">
+                        <div class="project-header">
+                            <h3>Catalogue ACS: Multi-Cluster GitOps Deployment Platform</h3>
+                            <p>A self-service platform letting engineers browse a Helm chart catalogue and deploy applications to Rancher-managed Kubernetes clusters through GitOps, with real-time status streaming and zero manual YAML editing. Built end-to-end during my internship at Atlas Cloud Service, from the Next.js wizard to the Fleet-synced cluster rollout.</p>
+                            <div class="project-stats">
+                                <span class="stat-item">3-step deploy wizard</span>
+                                <span class="stat-item">Zero manual YAML</span>
+                                <span class="stat-item">Real-time SSE status</span>
+                                <span class="stat-item">Multi-cluster GitOps</span>
+                                <span class="stat-item">Vault-backed secrets</span>
+                                <span class="stat-item">Keycloak OIDC RBAC</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Kubernetes</span>
+                                <span class="tech-tag">Rancher</span>
+                                <span class="tech-tag">Fleet</span>
+                                <span class="tech-tag">Helm</span>
+                                <span class="tech-tag">GitLab CI/CD</span>
+                                <span class="tech-tag">HashiCorp Vault</span>
+                                <span class="tech-tag">External Secrets Operator</span>
+                                <span class="tech-tag">Harbor</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">Redis</span>
+                                <span class="tech-tag">Keycloak/OIDC</span>
+                                <span class="tech-tag">MinIO</span>
+                                <span class="tech-tag">Server-Sent Events</span>
+                            </div>
+
+                            <div class="arch-diagram">
+                                <h4><i class="fas fa-project-diagram"></i> Architecture: from wizard submit to cluster rollout</h4>
+                                <svg viewBox="0 0 960 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Catalogue ACS architecture flow: Browser to Ingress to Next.js frontend and Spring Boot backend, which commits to a GitLab GitOps repo; Rancher Fleet syncs the commit to the target Kubernetes cluster. HashiCorp Vault with External Secrets Operator feeds secrets, and Harbor feeds container images.">
+                                    <defs>
+                                        <linearGradient id="archGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="960" y2="0">
+                                            <stop offset="0%" stop-color="#667eea"/>
+                                            <stop offset="100%" stop-color="#764ba2"/>
+                                        </linearGradient>
+                                        <marker id="archArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                            <path d="M0,0 L10,5 L0,10 z" fill="#8b9cf4"/>
+                                        </marker>
+                                    </defs>
+
+                                    <!-- SSE feedback loop (backend -> browser) -->
+                                    <path class="edge side" d="M 420 50 C 420 6, 80 6, 80 50"/>
+                                    <text class="edge-label" x="250" y="38">live deployment status (SSE, one-time ticket auth)</text>
+
+                                    <!-- Main flow row -->
+                                    <rect class="node-box" x="20" y="50" width="120" height="64" rx="12"/>
+                                    <text class="node-label" x="80" y="78">Browser</text>
+                                    <text class="node-sub" x="80" y="96">engineer · RBAC</text>
+
+                                    <path class="edge" d="M 140 82 L 178 82"/>
+
+                                    <rect class="node-box" x="180" y="50" width="120" height="64" rx="12"/>
+                                    <text class="node-label" x="240" y="78">nginx Ingress</text>
+                                    <text class="node-sub" x="240" y="96">TLS · cert-manager</text>
+
+                                    <path class="edge" d="M 300 82 L 338 82"/>
+
+                                    <rect class="node-box" x="340" y="50" width="120" height="64" rx="12"/>
+                                    <text class="node-label" x="400" y="72">Next.js 16</text>
+                                    <text class="node-label" x="400" y="90">Spring Boot 4</text>
+                                    <text class="node-sub" x="400" y="106">Keycloak OIDC · Redis</text>
+
+                                    <path class="edge" d="M 460 82 L 498 82"/>
+
+                                    <rect class="node-box" x="500" y="50" width="120" height="64" rx="12"/>
+                                    <text class="node-label" x="560" y="78">GitLab</text>
+                                    <text class="node-sub" x="560" y="96">commit fleet + values</text>
+
+                                    <path class="edge" d="M 620 82 L 658 82"/>
+
+                                    <rect class="node-box" x="660" y="50" width="120" height="64" rx="12"/>
+                                    <text class="node-label" x="720" y="78">Rancher Fleet</text>
+                                    <text class="node-sub" x="720" y="96">GitOps sync · bundles</text>
+
+                                    <path class="edge" d="M 780 82 L 818 82"/>
+
+                                    <rect class="node-box k8s" x="820" y="50" width="120" height="64" rx="12"/>
+                                    <text class="node-label" x="880" y="78">K8s Cluster</text>
+                                    <text class="node-sub" x="880" y="96">Helm release · ns</text>
+
+                                    <!-- Side systems -->
+                                    <rect class="node-box side" x="325" y="210" width="150" height="56" rx="12"/>
+                                    <text class="node-label" x="400" y="234">HashiCorp Vault</text>
+                                    <text class="node-sub" x="400" y="252">External Secrets Operator</text>
+
+                                    <rect class="node-box side" x="780" y="210" width="150" height="56" rx="12"/>
+                                    <text class="node-label" x="855" y="234">Harbor Registry</text>
+                                    <text class="node-sub" x="855" y="252">private images · charts</text>
+
+                                    <!-- Vault -> backend (secrets) -->
+                                    <path class="edge side" d="M 380 210 L 380 116"/>
+                                    <text class="edge-label" x="372" y="166" text-anchor="end">secrets → ESO → pods</text>
+
+                                    <!-- Backend -> Harbor (chart import / image replication) -->
+                                    <path class="edge side" d="M 440 114 L 440 160 L 800 160 L 800 208"/>
+                                    <text class="edge-label" x="620" y="153">chart import · image replication</text>
+
+                                    <!-- Harbor -> cluster (pull images) -->
+                                    <path class="edge side" d="M 900 210 L 900 116"/>
+                                    <text class="edge-label" x="893" y="190" text-anchor="end">pull images</text>
+                                </svg>
+                            </div>
+
+                            <div class="feature-grid">
+                                <div class="feature-item">
+                                    <h4><i class="fas fa-layer-group"></i> Full-stack platform</h4>
+                                    <p>Next.js 16 (App Router) frontend backed by a Spring Boot 4 / Java 21 API, deployed as one Helm chart with its own Fleet GitOps bundle, Vault SecretStore, ExternalSecrets, and an nginx ingress with TLS from cert-manager and Let's Encrypt.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <h4><i class="fas fa-magic"></i> 3-step deploy wizard</h4>
+                                    <p>Select cluster, chart version and namespace, configure Helm values, then review and submit. The backend commits <code>fleet.yaml</code> and <code>values.yaml</code> straight into the GitLab GitOps repo; Rancher Fleet picks up the commit and syncs it to the target cluster.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <h4><i class="fas fa-satellite-dish"></i> Live status over SSE</h4>
+                                    <p>Deployment progress streams to the browser via Server-Sent Events. Because <code>EventSource</code> cannot carry a JWT header, the API issues short-lived one-time tickets that bridge JWT authentication to the SSE stream.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <h4><i class="fas fa-bolt"></i> Redis multi-tier caching</h4>
+                                    <p>Spring Cache on Redis cuts redundant Rancher and registry calls, with TTLs tuned per data volatility: 10 minutes for catalogue data, 30 seconds for Fleet bundle polling.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <h4><i class="fas fa-lock"></i> Secrets never reach the frontend</h4>
+                                    <p>Rancher API tokens are AES-256-GCM encrypted server-side. Production secrets for the database, Keycloak, GitLab and Harbor are pulled from HashiCorp Vault by the External Secrets Operator instead of living in Helm values.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <h4><i class="fas fa-box-open"></i> Helm chart import pipeline</h4>
+                                    <p>Discovers chart versions from OCI and classic Helm registries and automatically replicates the referenced container images into a private Harbor registry, so clusters only pull from trusted sources.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <h4><i class="fas fa-user-shield"></i> Keycloak OIDC with RBAC</h4>
+                                    <p>NextAuth.js on the frontend and Spring Security Resource Server on the backend, with superuser / admin / developer / viewer roles enforced both in route guards and via <code>@PreAuthorize</code> on the API.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <h4><i class="fas fa-clipboard-list"></i> Durable audit trail</h4>
+                                    <p>Audit events are written as NDJSON files to MinIO (S3-compatible) rather than a database table, giving a durable, queryable compliance trail that survives independently of the application database.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- No public GitHub repository for this internal platform; link to the demo video instead -->
+                        <div class="project-links">
+                            <a href="#atlas-demo">
+                                <i class="fas fa-play-circle"></i> Demo Video
+                            </a>
+                            <a href="#catalogue-acs" class="project-link-muted">
+                                <i class="fas fa-building"></i> Built at Atlas Cloud Service (internal project)
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card featured-project">
+                        <div class="project-header">
+                            <h3>NexusCommerce: Complete Cloud-Native E-Commerce Ecosystem</h3>
+                            <p>Enterprise-grade microservices platform demonstrating modern DevOps practices with 8 production microservices, multi-environment GitOps deployment, comprehensive observability stack, and service mesh architecture. Features event-driven communication, zero-downtime deployments, and advanced monitoring.</p>
+                            <div class="project-stats">
+                                <span class="stat-item">70% API call reduction</span>
+                                <span class="stat-item">Sub-200ms response times</span>
+                                <span class="stat-item">Zero-downtime deployments</span>
+                                <span class="stat-item">Multi-environment K8s</span>
+                                <span class="stat-item">Istio Service Mesh</span>
+                                <span class="stat-item">Complete Observability</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Java 17</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Go</span>
+                                <span class="tech-tag">Apache Kafka</span>
+                                <span class="tech-tag">AWS EKS</span>
+                                <span class="tech-tag">Terraform</span>
+                                <span class="tech-tag">Helm</span>
+                                <span class="tech-tag">Istio</span>
+                                <span class="tech-tag">ArgoCD</span>
+                                <span class="tech-tag">Jenkins</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Redis</span>
+                                <span class="tech-tag">Prometheus</span>
+                                <span class="tech-tag">ELK Stack</span>
+                                <span class="tech-tag">Kiali</span>
+                            </div>
+                            <div class="repo-grid">
+                                <div class="repo-category">
+                                    <h4>Core Platform</h4>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">8 Microservices Architecture</a>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">Event-Driven Communication</a>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">API Gateway & BFF Pattern</a>
+                                </div>
+                                <div class="repo-category">
+                                    <h4>Frontend Applications</h4>
+                                    <a href="https://github.com/Saoudyahya/Ecommerce-front-office" target="_blank">Next.js 15 Customer Portal</a>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce_Back_office" target="_blank">React Admin Dashboard</a>
+                                </div>
+                                <div class="repo-category">
+                                    <h4>Infrastructure & DevOps</h4>
+                                    <a href="https://github.com/ZakariaRek/Ecommerce-App-Helm-Charts" target="_blank">Production Helm Charts</a>
+                                    <a href="https://github.com/Saoudyahya/Ecommerce-App-Terraform-config" target="_blank">Terraform AWS Infrastructure</a>
+                                    <a href="https://github.com/ZakariaRek/gitops-repo_ArgoCD" target="_blank">GitOps ArgoCD Deployment</a>
+                                    <a href="https://github.com/Saoudyahya/Ecommerce-App-Config-serveur-repo" target="_blank">Configuration Management</a>
+                                </div>
+                            </div>
+                            <div class="architecture-links">
+                                <h4>Architecture & Documentation:</h4>
+                                <a href="https://app.eraser.io/workspace/el7sNnsJe96fEgJclztv" target="_blank">Microservice Architecture</a>
+                                <a href="https://app.eraser.io/workspace/g1l4mIvbfEltNHNNYP0G" target="_blank">Kubernetes Infrastructure</a>
+                                <a href="https://app.eraser.io/workspace/xb6q22SZFLAD0ftPeuNO" target="_blank">GitOps Pipeline Flow</a>
+                                <a href="https://app.eraser.io/workspace/W0KDmrzgWrCJ2C659BIG?origin=share" target="_blank">AWS & K8S EKS</a>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">
+                                <i class="fab fa-github"></i> GitHub Repository
+                            </a>
+                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7362223852988329985/" target="_blank">
+                                <i class="fab fa-linkedin"></i> LinkedIn Post
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-card featured-project">
+                        <div class="project-header">
+                            <h3>Real-Time Financial News Market Impact Analysis System</h3>
+                            <p>AI-powered financial intelligence platform that automatically ingests, analyzes, and processes financial news to generate high-confidence trading signals for S&P 500 stocks. Combines NLP sentiment analysis, predictive modeling, and real-time market intelligence with production-grade microservices architecture, service mesh, automated canary deployments, and comprehensive observability.</p>
+                            <div class="project-stats">
+                                <span class="stat-item">12,500 articles/hour processing</span>
+                                <span class="stat-item">Sub-2s end-to-end latency</span>
+                                <span class="stat-item">78.5% prediction accuracy</span>
+                                <span class="stat-item">99.95% uptime</span>
+                                <span class="stat-item">Istio Service Mesh</span>
+                                <span class="stat-item">Automated Canary Deployments</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Go 1.23</span>
+                                <span class="tech-tag">Java 21</span>
+                                <span class="tech-tag">Spring Boot 3.5</span>
+                                <span class="tech-tag">gRPC</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">Redis</span>
+                                <span class="tech-tag">Kubernetes</span>
+                                <span class="tech-tag">Helm</span>
+                                <span class="tech-tag">Istio</span>
+                                <span class="tech-tag">Flagger</span>
+                                <span class="tech-tag">FluxCD</span>
+                                <span class="tech-tag">Terraform</span>
+                                <span class="tech-tag">AWS EKS</span>
+                                <span class="tech-tag">Prometheus</span>
+                                <span class="tech-tag">Grafana</span>
+                                <span class="tech-tag">Kiali</span>
+                            </div>
+                            <div class="repo-grid">
+                                <div class="repo-category">
+                                    <h4>Core Services</h4>
+                                    <a href="https://github.com/ZakariaRek/Real-Time-Financial-News-Market-Impact-Analysis-system" target="_blank">News Ingestion Service (Go)</a>
+                                    <a href="https://github.com/ZakariaRek/Real-Time-Financial-News-Market-Impact-Analysis-system" target="_blank">NLP Processing Service (Go)</a>
+                                    <a href="https://github.com/ZakariaRek/Real-Time-Financial-News-Market-Impact-Analysis-system" target="_blank">Market Impact Service (Java)</a>
+                                    <a href="https://github.com/ZakariaRek/Real-Time-Financial-News-Market-Impact-Analysis-system" target="_blank">Alert Signal Service (Java)</a>
+                                </div>
+                                <div class="repo-category">
+                                    <h4>Infrastructure as Code</h4>
+                                    <a href="https://github.com/ZakariaRek/Real-Time-Financial-News-Market-Impact-Analysis-system" target="_blank">Terraform AWS Infrastructure</a>
+                                    <a href="https://github.com/ZakariaRek/Real-Time-Financial-News-Market-Impact-Analysis-system" target="_blank">Kubernetes Manifests</a>
+                                    <a href="https://github.com/ZakariaRek/Real-Time-Financial-News-Market-Impact-Analysis-system" target="_blank">Helm Charts</a>
+                                </div>
+                                <div class="repo-category">
+                                    <h4>Progressive Delivery</h4>
+                                    <a href="https://github.com/ZakariaRek/Real-Time-Financial-News-Market-Impact-Analysis-system" target="_blank">Flagger Canary Configs</a>
+                                    <a href="https://github.com/ZakariaRek/Real-Time-Financial-News-Market-Impact-Analysis-system" target="_blank">FluxCD GitOps Setup</a>
+                                    <a href="https://github.com/ZakariaRek/Real-Time-Financial-News-Market-Impact-Analysis-system" target="_blank">Istio Service Mesh</a>
+                                </div>
+                            </div>
+                            <div class="architecture-links">
+                                <h4>Key Features:</h4>
+                                <a href="#" target="_blank">Multi-Source News Ingestion (RSS, NewsAPI, Twitter)</a>
+                                <a href="#" target="_blank">Custom NLP Sentiment Analysis Engine</a>
+                                <a href="#" target="_blank">Real-Time Trading Signal Generation</a>
+                                <a href="#" target="_blank">Automated Canary Deployments with Flagger</a>
+                                <a href="#" target="_blank">Complete Observability Stack</a>
+                                <a href="#" target="_blank">Production-Grade Security (mTLS, KMS Encryption)</a>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ZakariaRek/Real-Time-Financial-News-Market-Impact-Analysis-system" target="_blank">
+                                <i class="fab fa-github"></i> GitHub Repository
+                            </a>
+                            <a href="https://www.linkedin.com/in/zakaria-rekhla-2116a72a1/" target="_blank">
+                                <i class="fab fa-linkedin"></i> LinkedIn Post
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="secondary-projects">
+
+
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3><i class="fas fa-home"></i> Room Reservation Microservices System</h3>
+                            <p>Complete DevOps-focused microservices platform for room reservation with comprehensive CI/CD pipeline, containerization, and monitoring. Features Jenkins automation, Docker deployment, multi-environment configuration, and robust testing workflows with security scanning and automated notifications.</p>
+                            <div class="project-stats">
+                                <span class="stat-item"><i class="fas fa-sync-alt"></i> Jenkins CI/CD Pipeline</span>
+                                <span class="stat-item"><i class="fab fa-docker"></i> Docker & Docker Compose</span>
+                                <span class="stat-item"><i class="fas fa-shield-alt"></i> Security Scanning with Trivy</span>
+                                <span class="stat-item"><i class="fas fa-rocket"></i> Multi-stage Deployment</span>
+                                <span class="stat-item"><i class="fas fa-check-circle"></i> Automated Testing</span>
+                                <span class="stat-item"><i class="fas fa-envelope"></i> Email Notifications</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Jenkins</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">Trivy Security Scan</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">Maven</span>
+                                <span class="tech-tag">JUnit Testing</span>
+                                <span class="tech-tag">Email Integration</span>
+                            </div>
+                            <div class="architecture-links">
+                                <h4><i class="fas fa-tools"></i> DevOps Features:</h4>
+                                <a href="#" target="_blank">Multi-stage Jenkins Pipeline</a>
+                                <a href="#" target="_blank">Docker Containerization</a>
+                                <a href="#" target="_blank">Security Vulnerability Scanning</a>
+                                <a href="#" target="_blank">Automated Testing & Reporting</a>
+                                <a href="#" target="_blank">Email Notification System</a>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ZakariaRek/room-reservation-system-auth-service" target="_blank">
+                                <i class="fab fa-github"></i> GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3><i class="fas fa-hospital"></i> MedConnect Healthcare Platform</h3>
+                            <p>Full-stack web application for digitizing medical records and automated activity report generation for occupational health units. Features real-time analytics, patient management, and comprehensive reporting system.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">Express.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">JWT</span>
+                                <span class="tech-tag">Chart.js</span>
+                                <span class="tech-tag">Docker</span>
+                            </div>
+                        </div>
+                        <div class="project-video">
+                            <div class="video-container">
+                                <video controls>
+                                    <source src="./assets/medc/1.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">
+                                <i class="fab fa-github"></i> GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3><i class="fas fa-book"></i> Library Management System</h3>
+                            <p>Comprehensive web platform automating library operations including loan management, return processing, membership administration, analytics dashboard, and automated notification system with advanced search capabilities.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">Prisma ORM</span>
+                                <span class="tech-tag">TailwindCSS</span>
+                            </div>
+                        </div>
+                        <div class="project-media">
+                            <div class="media-grid">
+                                <div class="media-item">
+                                    <img src="./assets/ESTS/1.png" alt="Library Management System Screenshot 1">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/ESTS/2.png" alt="Library Management System Screenshot 2">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/ESTS/3.png" alt="Library Management System Screenshot 3">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/ESTS/5.png" alt="Library Management System Screenshot 3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank">
+                                <i class="fab fa-github"></i> GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3><i class="fas fa-heartbeat"></i> AI-Powered Blood Pressure Monitor</h3>
+                            <p>Revolutionary healthcare application with Next.js web dashboard for healthcare providers. Features AI-powered OCR using Hugging Face models for automatic blood pressure reading extraction from device photos, real-time Firebase communication, personalized health insights with OpenAI integration, and comprehensive patient management system.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">Laravel</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Hugging Face OCR</span>
+                                <span class="tech-tag">OpenAI API</span>
+                                <span class="tech-tag">Firebase</span>
+                                <span class="tech-tag">MongoDB Atlas</span>
+                                <span class="tech-tag">JWT Auth</span>
+                                <span class="tech-tag">Real-time Chat</span>
+                            </div>
+                        </div>
+                        <div class="project-media">
+                            <div class="media-grid">
+                                <div class="media-item">
+                                    <img src="./assets/norsys/1.png" alt="AI-Powered Blood Pressure Monitor Screenshot 1">
+                                </div>
+                                
+                                <div class="media-item">
+                                    <img src="./assets/norsys/3.png" alt="AI-Powered Blood Pressure Monitor Screenshot 3">
+                                </div><div class="media-item">
+                                    <img src="./assets/norsys/2.png" alt="AI-Powered Blood Pressure Monitor Screenshot 2">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/norsys/4.png" alt="AI-Powered Blood Pressure Monitor Screenshot 3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ZakariaRek/Blood-Pressure" target="_blank">
+                                <i class="fab fa-github"></i> GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3><i class="fas fa-trophy"></i> TERRAP-POD - UNESCO Hackathon Winner</h3>
+                            <p><strong>1st Place Winner</strong> at UNESCO and Cadi Ayyad University-sponsored hackathon. Innovative modular vertical farming solution addressing Morocco's agricultural water challenges using IoT and sustainable technologies.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">IoT Sensors</span>
+                                <span class="tech-tag">Arduino</span>
+                                <span class="tech-tag">Sustainability</span>
+                                <span class="tech-tag">Agriculture Tech</span>
+                                <span class="tech-tag">Water Management</span>
+                            </div>
+                        </div>
+                        <div class="project-media">
+                            <div class="media-grid">
+                               
+                                <div class="media-item">
+                                    <img src="./assets/terra-pod/1.jpg" alt="Library Management System Screenshot 2">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/terra-pod/2.jpg" alt="Library Management System Screenshot 3">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/terra-pod/3.jpg" alt="Library Management System Screenshot 1">
+                                </div>
+                                <div class="media-item">
+                                    <img src="./assets/terra-pod/4.JPG" alt="Library Management System Screenshot 1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.linkedin.com/in/zakaria-rekhla-2116a72a1/" target="_blank">
+                                <i class="fab fa-linkedin"></i> LinkedIn Post
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Let's Connect</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p>zakariarekhla0@gmail.com</p>
+                        <a href="mailto:zakariarekhla0@gmail.com" class="btn btn-secondary">Send Email</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <p>+212 648 175 782</p>
+                        <a href="tel:+212648175782" class="btn btn-secondary">Call Now</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <h3>LinkedIn</h3>
+                        <p>Professional Network</p>
+                        <a href="https://linkedin.com/in/zakaria-rekhla-2116a72a1" target="_blank" class="btn btn-secondary">Connect</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>GitHub</h3>
+                        <p>Open Source Projects</p>
+                        <a href="https://github.com/ZakariaRek" target="_blank" class="btn btn-secondary">Follow</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightbox-close">&times;</span>
+            <img src="" alt="Enlarged view" id="lightbox-img">
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect and active link highlighting
+        function updateNavbar() {
+            const navbar = document.getElementById('navbar');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('section[id]');
+            
+            // Add scrolled class
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Highlight active nav link
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Animated timeline lines and cards
+        function animateTimelines() {
+            const experienceSection = document.getElementById('experience');
+            const timelineLines = document.querySelectorAll('.timeline-vertical');
+            const timelineEntries = document.querySelectorAll('.timeline-entry');
+
+            if (!experienceSection) return;
+
+            const rect = experienceSection.getBoundingClientRect();
+            const sectionTop = rect.top + window.scrollY;
+            const sectionBottom = sectionTop + rect.height;
+            const currentScroll = window.scrollY + window.innerHeight / 2;
+
+            // Calculate progress through the education & experience section
+            let progress = 0;
+            if (currentScroll > sectionTop && currentScroll < sectionBottom) {
+                progress = (currentScroll - sectionTop) / (sectionBottom - sectionTop);
+                progress = Math.min(1, Math.max(0, progress));
+            } else if (currentScroll >= sectionBottom) {
+                progress = 1;
+            }
+
+            // Animate timeline lines based on scroll progress
+            timelineLines.forEach((line, lineIndex) => {
+                if (progress > 0.1) { // Start animation when 10% into section
+                    line.classList.add('animate-line');
+                    
+                    // Animate individual timeline entries and cards based on line progress
+                    const entries = line.querySelectorAll('.timeline-entry');
+                    const totalEntries = entries.length;
+                    
+                    entries.forEach((entry, entryIndex) => {
+                        // Calculate when this entry should become active
+                        const entryStartProgress = 0.2 + (entryIndex / totalEntries) * 0.6; // Spread entries across 60% of section scroll
+                        const card = entry.querySelector('.timeline-card');
+                        
+                        if (progress >= entryStartProgress) {
+                            // Add pulsing animation to the timeline point
+                            entry.classList.add('animate-point');
+                            
+                            // Show the card with a slight delay after the point animation
+                            setTimeout(() => {
+                                if (card) {
+                                    card.classList.add('show');
+                                }
+                            }, 300);
+                        }
+                    });
+                }
+            });
+
+            // Synchronize both timeline lines at the end
+            if (progress > 0.8) {
+                timelineLines.forEach(line => {
+                    line.style.setProperty('--line-animation-duration', '0.8s');
+                });
+                
+                // Ensure all cards are shown
+                document.querySelectorAll('.timeline-card').forEach(card => {
+                    card.classList.add('show');
+                });
+            }
+        }
+
+        // Combined scroll handler
+        function handleScroll() {
+            updateNavbar();
+            animateTimelines();
+            
+            // Parallax effect for hero section
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 75;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 15 + 8) + 's';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize particles
+        createParticles();
+
+        // Add typing effect to hero subtitle
+        const subtitle = document.querySelector('.hero .subtitle');
+        const text = subtitle.textContent;
+        subtitle.textContent = '';
+        
+        function typeText(element, text, delay = 150) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, delay);
+                }
+            }
+            setTimeout(type, 2500);
+        }
+
+        typeText(subtitle, text);
+
+        // Enhanced button interactions with ripple effect
+        document.querySelectorAll('.btn, .cert-link').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.02)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+
+            btn.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.3);
+                    transform: scale(0);
+                    animation: ripple 0.8s linear;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    pointer-events: none;
+                `;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 800);
+            });
+        });
+
+        // Add CSS for ripple animation and positioning
+        const rippleCSS = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            .btn, .cert-link {
+                position: relative;
+                overflow: hidden;
+            }
+        `;
+        const style = document.createElement('style');
+        style.textContent = rippleCSS;
+        document.head.appendChild(style);
+
+        // Initialize navbar highlighting and timeline animation on page load
+        handleScroll();
+
+        // Lightbox functionality for images
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        // Add click event to all media items
+        document.querySelectorAll('.media-item img').forEach(img => {
+            img.addEventListener('click', function() {
+                lightbox.classList.add('active');
+                lightboxImg.src = this.src;
+                lightboxImg.alt = this.alt;
+                // Prevent body scroll when lightbox is open
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close lightbox when clicking the close button
+        lightboxClose.addEventListener('click', function() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close lightbox when clicking outside the image
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Demo video: show an on-brand placeholder if the .mp4 has not been dropped into assets/videos yet
+        document.querySelectorAll('.demo-video-frame').forEach(frame => {
+            const video = frame.querySelector('video');
+            const source = frame.querySelector('source');
+            if (!video) return;
+
+            const markMissing = () => frame.classList.add('is-missing');
+
+            // The <source> element fires 'error' when its file cannot be loaded
+            if (source) source.addEventListener('error', markMissing);
+            video.addEventListener('error', markMissing);
+
+            // Missing poster image should not show a broken-image icon
+            if (video.poster) {
+                const probe = new Image();
+                probe.onerror = () => video.removeAttribute('poster');
+                probe.src = video.poster;
+            }
+        });
+
+        // Console easter egg
+        console.log(`
+        Welcome to Zakaria Rekhla's Portfolio!
+        
+        🚀 Enhanced with:
+        • Profile image with elegant circular design and animations
+        • Active navbar highlighting with hover-like effects
+        • Slower, more elegant animations (1.5s duration)
+        • Synchronized animated timeline lines
+        • Progressive timeline point animations
+        • Enhanced parallax and interaction effects
+        • Interactive image lightbox - click any project image to enlarge!
+        
+        Interested in the code? Check out my GitHub:
+        https://github.com/ZakariaRek
+        
+        Let's build something amazing together!
+        `);
+    </script>
+</body>
+</html>

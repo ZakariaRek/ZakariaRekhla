@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zakaria Rekhla — DevOps & Cloud Engineer</title>
+<meta name="description" content="Zakaria Rekhla — DevOps & Cloud Engineer. Kubernetes-first, GitOps-driven, secured by default. CKS · CKA · KCSA · KCNA · AWS CCP · CCNA.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f3efe6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0e0d" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="./assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!--
+  ┌──────────────────────────────────────────────────────────────────┐
+  │  apiVersion: portfolio/v2                                        │
+  │  kind: Engineer                                                  │
+  │  metadata:                                                       │
+  │    name: zakaria-rekhla                                          │
+  │    namespace: Safi                                               │
+  │  Concept: "The Manifest" — a portfolio that reads like a         │
+  │  rendered cluster manifest. Paper + ink editorial typography,    │
+  │  monospace as structure, one signal-green accent for "Ready".    │
+  └──────────────────────────────────────────────────────────────────┘
+-->
+
+<style>
+/* ============================================================
+   0. TOKENS
+   ============================================================ */
+:root{
+  color-scheme: light;
+  --paper:#f3efe6;
+  --paper-2:#eae5d8;
+  --paper-3:#e0dacb;
+  --ink:#151513;
+  --ink-2:#4b4942;
+  --ink-3:#7c786d;
+  --line:#cfc8b7;
+  --line-strong:#151513;
+  --accent:#1e6d3e;
+  --accent-soft:#d9ebd8;
+  --accent-ink:#0f4a28;
+  --amber:#8f6200;
+  --amber-soft:#f1e5bf;
+  --selection:#c9f36a;
+
+  --font-display:"Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-sans:"Instrument Sans", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* fluid type scale */
+  --t--1: clamp(0.72rem, 0.70rem + 0.15vw, 0.8rem);
+  --t-0:  clamp(0.95rem, 0.9rem + 0.25vw, 1.08rem);
+  --t-1:  clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+  --t-2:  clamp(1.4rem, 1.15rem + 1.1vw, 2rem);
+  --t-3:  clamp(1.9rem, 1.4rem + 2.2vw, 3.2rem);
+  --t-4:  clamp(2.6rem, 1.6rem + 4.5vw, 5.6rem);
+  --t-5:  clamp(3.4rem, 1.4rem + 9vw, 9.5rem);
+
+  --space-1: clamp(0.5rem, 0.4rem + 0.4vw, 0.75rem);
+  --space-2: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
+  --space-3: clamp(1.5rem, 1rem + 2vw, 3rem);
+  --space-4: clamp(2.5rem, 1.5rem + 4vw, 6rem);
+  --space-5: clamp(4rem, 2rem + 8vw, 10rem);
+
+  --gutter: clamp(1rem, 0.5rem + 3vw, 3.5rem);
+  --rail-w: 264px;
+  --radius: 4px;
+  --ease-out: cubic-bezier(.2,.7,.2,1);
+  --ease-spring: cubic-bezier(.34,1.4,.64,1);
+}
+
+[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#0c0e0d;
+  --paper-2:#121514;
+  --paper-3:#1a1e1c;
+  --ink:#ebe8de;
+  --ink-2:#b5b1a5;
+  --ink-3:#7f7b70;
+  --line:#2a2f2c;
+  --line-strong:#ebe8de;
+  --accent:#b8f542;
+  --accent-soft:#1a2811;
+  --accent-ink:#d6ff7a;
+  --amber:#f0b429;
+  --amber-soft:#2a2310;
+  --selection:#3f5a10;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:#0c0e0d;
+    --paper-2:#121514;
+    --paper-3:#1a1e1c;
+    --ink:#ebe8de;
+    --ink-2:#b5b1a5;
+    --ink-3:#7f7b70;
+    --line:#2a2f2c;
+    --line-strong:#ebe8de;
+    --accent:#b8f542;
+    --accent-soft:#1a2811;
+    --accent-ink:#d6ff7a;
+    --amber:#f0b429;
+    --amber-soft:#2a2310;
+    --selection:#3f5a10;
+  }
+}
+
+/* ============================================================
+   1. BASE
+   ============================================================ */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-sans);
+  font-size:var(--t-0);
+  line-height:1.55;
+  font-feature-settings:"ss01","cv11";
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+::selection{ background:var(--selection); color:var(--ink); }
+img,video,svg{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration-color:var(--line); text-underline-offset:.2em; transition:text-decoration-color .2s; }
+a:hover{ text-decoration-color:var(--accent); }
+h1,h2,h3,h4{ margin:0; font-weight:400; line-height:1.05; letter-spacing:-0.01em; }
+p{ margin:0; }
+ul{ margin:0; padding:0; list-style:none; }
+button{ font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer; }
+:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+.mono{ font-family:var(--font-mono); font-size:var(--t--1); letter-spacing:.01em; }
+.serif{ font-family:var(--font-display); }
+.muted{ color:var(--ink-3); }
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.skip{ position:fixed; top:-100px; left:1rem; z-index:100; background:var(--ink); color:var(--paper); padding:.5rem .8rem; font-family:var(--font-mono); }
+.skip:focus{ top:1rem; }
+
+/* paper grain — subtle, CSS-only, no image asset */
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 2px, rgba(0,0,0,.012) 2px 3px),
+    repeating-linear-gradient(90deg, transparent 0 2px, rgba(0,0,0,.012) 2px 3px);
+  mix-blend-mode:multiply;
+}
+[data-theme="dark"] body::before{ mix-blend-mode:screen; opacity:.5; }
+
+/* scroll progress (scroll-driven animation w/ JS fallback) */
+.progress{
+  position:fixed; top:0; left:0; height:2px; width:100%; z-index:60;
+  background:var(--accent); transform-origin:0 50%; transform:scaleX(var(--p,0));
+}
+@supports (animation-timeline: scroll()){
+  .progress{ animation:grow linear both; animation-timeline:scroll(root); transform:none; }
+  @keyframes grow{ from{ transform:scaleX(0);} to{ transform:scaleX(1);} }
+}
+
+/* ============================================================
+   2. FRAME: rail + main
+   ============================================================ */
+.frame{ position:relative; z-index:1; display:grid; grid-template-columns:1fr; min-height:100vh; }
+@media (min-width:1100px){
+  .frame{ grid-template-columns:var(--rail-w) minmax(0,1fr); }
+}
+
+/* --- Rail (desktop) --- */
+.rail{
+  display:none;
+  position:sticky; top:0; height:100vh;
+  border-right:1px solid var(--line);
+  padding:var(--space-3) var(--space-2);
+  flex-direction:column; gap:var(--space-3);
+  background:var(--paper);
+}
+@media (min-width:1100px){ .rail{ display:flex; } }
+.rail .brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; }
+.rail .brand .dot{ width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
+.rail .brand .name{ font-family:var(--font-mono); font-size:var(--t--1); }
+.rail-nav{ font-family:var(--font-mono); font-size:var(--t--1); }
+.rail-nav .hdr{ display:grid; grid-template-columns:2rem 1fr auto; gap:.5rem; color:var(--ink-3); padding:0 0 .5rem; border-bottom:1px solid var(--line); margin-bottom:.4rem; }
+.rail-nav a{
+  display:grid; grid-template-columns:2rem 1fr auto; gap:.5rem; align-items:center;
+  padding:.45rem 0; text-decoration:none; color:var(--ink-2);
+  border-bottom:1px dashed transparent; transition:color .2s, padding-left .25s var(--ease-out);
+}
+.rail-nav a:hover{ color:var(--ink); }
+.rail-nav a .st{ color:var(--ink-3); }
+.rail-nav a .st::before{ content:"○ "; }
+.rail-nav a[data-state="ready"] .st{ color:var(--ink-3); }
+.rail-nav a[data-state="ready"] .st::before{ content:"✓ "; color:var(--accent); }
+.rail-nav a[data-state="running"]{ color:var(--ink); }
+.rail-nav a[data-state="running"] .st{ color:var(--accent); }
+.rail-nav a[data-state="running"] .st::before{ content:"● "; animation:blink 1.6s steps(1) infinite; }
+@keyframes blink{ 50%{ opacity:.35; } }
+@media (prefers-reduced-motion: reduce){ .rail-nav a[data-state="running"] .st::before{ animation:none; } }
+.rail-foot{ margin-top:auto; display:flex; flex-direction:column; gap:.8rem; }
+.rail-foot .clock{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); }
+
+/* theme toggle */
+.theme-btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-family:var(--font-mono); font-size:var(--t--1);
+  border:1px solid var(--line-strong); padding:.4rem .7rem; border-radius:999px;
+  transition:background .2s, color .2s;
+}
+.theme-btn:hover{ background:var(--ink); color:var(--paper); }
+.theme-btn .sw{ width:12px; height:12px; border-radius:50%; background:var(--ink); border:1px solid currentColor; }
+.theme-btn:hover .sw{ background:var(--paper); }
+.theme-btn .lbl::after{ content:"dark"; }
+[data-theme="dark"] .theme-btn .lbl::after{ content:"light"; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .theme-btn .lbl::after{ content:"light"; } }
+
+/* --- Top bar (mobile / tablet) --- */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding:.75rem var(--gutter);
+  background:color-mix(in srgb, var(--paper) 82%, transparent);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+@media (min-width:1100px){ .topbar{ display:none; } }
+.topbar .brand{ display:flex; align-items:center; gap:.5rem; text-decoration:none; font-family:var(--font-mono); font-size:var(--t--1); }
+.topbar .brand .dot{ width:8px; height:8px; border-radius:50%; background:var(--accent); }
+.topbar nav{ display:flex; gap:1rem; overflow-x:auto; scrollbar-width:none; font-family:var(--font-mono); font-size:var(--t--1); }
+.topbar nav::-webkit-scrollbar{ display:none; }
+.topbar nav a{ text-decoration:none; color:var(--ink-2); white-space:nowrap; }
+.topbar nav a[data-state="running"]{ color:var(--accent); }
+@media (max-width:640px){ .topbar nav{ display:none; } }
+
+/* --- Main --- */
+main{ min-width:0; }
+.sec{ padding:var(--space-4) var(--gutter); border-top:1px solid var(--line-strong); position:relative; }
+.sec:first-of-type{ border-top:0; }
+.sec-head{
+  display:grid; grid-template-columns:auto 1fr auto; align-items:baseline; gap:var(--space-2);
+  margin-bottom:var(--space-3);
+}
+.sec-head .idx{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); }
+.sec-head h2{ font-family:var(--font-display); font-size:var(--t-3); line-height:1; }
+.sec-head h2 em{ font-style:italic; color:var(--accent); }
+.sec-head .kind{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); text-align:right; }
+@media (max-width:640px){
+  .sec-head{ grid-template-columns:auto 1fr; }
+  .sec-head .kind{ grid-column:1 / -1; text-align:left; }
+}
+
+/* reveal system */
+.rv{ opacity:0; transform:translateY(14px); transition:opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+.rv.in{ opacity:1; transform:none; }
+.rv-clip{ clip-path:inset(0 0 100% 0); transition:clip-path .9s var(--ease-out); }
+.rv-clip.in{ clip-path:inset(0 0 -10% 0); }
+.rv-line{ position:relative; }
+.rv-line::after{ content:""; position:absolute; left:0; bottom:-1px; height:1px; width:0; background:var(--line-strong); transition:width 1.1s var(--ease-out); }
+.rv-line.in::after{ width:100%; }
+[data-d="1"]{ transition-delay:.08s } [data-d="2"]{ transition-delay:.16s } [data-d="3"]{ transition-delay:.24s }
+[data-d="4"]{ transition-delay:.32s } [data-d="5"]{ transition-delay:.40s } [data-d="6"]{ transition-delay:.48s }
+@media (prefers-reduced-motion: reduce){
+  .rv,.rv-clip{ opacity:1; transform:none; clip-path:none; transition:none; }
+  .rv-line::after{ width:100%; transition:none; }
+}
+
+/* buttons */
+.btn{
+  display:inline-flex; align-items:center; gap:.55rem;
+  font-family:var(--font-mono); font-size:var(--t--1);
+  border:1px solid var(--line-strong); padding:.7rem 1.05rem; border-radius:999px;
+  text-decoration:none; color:var(--ink); background:transparent;
+  transition:background .25s, color .25s, transform .3s var(--ease-spring);
+  will-change:transform;
+}
+.btn:hover{ background:var(--ink); color:var(--paper); }
+.btn.primary{ background:var(--ink); color:var(--paper); }
+.btn.primary:hover{ background:var(--accent); color:#0c0e0d; border-color:var(--accent); }
+.btn svg{ width:14px; height:14px; }
+
+/* ============================================================
+   3. HERO
+   ============================================================ */
+.hero{ padding-top:var(--space-4); min-height:calc(100vh - 3rem); display:flex; flex-direction:column; justify-content:center; }
+.hero-grid{ display:grid; grid-template-columns:minmax(0,1fr); gap:var(--space-3); align-items:end; }
+@media (min-width:900px){ .hero-grid{ grid-template-columns:minmax(0,1.6fr) minmax(240px,.7fr); } }
+.eyebrow{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); display:flex; flex-wrap:wrap; gap:.4rem 1.2rem; margin-bottom:var(--space-2); }
+.eyebrow b{ font-weight:500; color:var(--ink-2); }
+.display{
+  font-family:var(--font-display); font-size:var(--t-5); line-height:.92; letter-spacing:-0.025em;
+  margin:0 0 var(--space-2) -0.04em;
+}
+.display em{ font-style:italic; color:var(--accent); }
+.display .l{ display:block; overflow:hidden; }
+.display .l span{ display:inline-block; }
+.lede{ font-size:var(--t-1); max-width:52ch; color:var(--ink-2); text-wrap:pretty; }
+.lede strong{ color:var(--ink); font-weight:500; }
+.hero-cta{ display:flex; flex-wrap:wrap; gap:.6rem; margin-top:var(--space-3); }
+
+/* portrait */
+.portrait{ position:relative; aspect-ratio:4/5; overflow:hidden; border:1px solid var(--line-strong); background:var(--paper-2); }
+.portrait img{ width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.05); transition:filter .6s var(--ease-out), transform 1.2s var(--ease-out); }
+.portrait:hover img{ filter:grayscale(0) contrast(1); transform:scale(1.02); }
+.portrait .tag{
+  position:absolute; left:0; bottom:0; right:0;
+  font-family:var(--font-mono); font-size:var(--t--1);
+  background:var(--paper); border-top:1px solid var(--line-strong);
+  padding:.45rem .6rem; display:flex; justify-content:space-between; gap:.5rem;
+}
+.portrait .tag .ok{ color:var(--accent); }
+.portrait .corner{ position:absolute; width:14px; height:14px; border:1px solid var(--line-strong); }
+.portrait .corner.tl{ top:8px; left:8px; border-right:0; border-bottom:0; }
+.portrait .corner.tr{ top:8px; right:8px; border-left:0; border-bottom:0; }
+
+/* terminal block */
+.term{
+  margin-top:var(--space-4);
+  border:1px solid var(--line-strong); background:var(--paper-2);
+  font-family:var(--font-mono); font-size:var(--t--1); line-height:1.7;
+  overflow:hidden;
+}
+.term .bar{ display:flex; align-items:center; gap:.5rem; padding:.45rem .8rem; border-bottom:1px solid var(--line); color:var(--ink-3); }
+.term .bar i{ width:9px; height:9px; border-radius:50%; border:1px solid var(--ink-3); display:inline-block; }
+.term .bar span{ margin-left:auto; }
+.term pre{ margin:0; padding:.9rem 1rem 1rem; overflow-x:auto; white-space:pre; color:var(--ink-2); }
+.term .p{ color:var(--accent); }
+.term .cmd{ color:var(--ink); }
+.term .hd{ color:var(--ink-3); }
+.term .ok{ color:var(--accent); }
+.term .cursor{ display:inline-block; width:.6ch; height:1.1em; background:var(--ink); vertical-align:-0.2em; animation:blink 1s steps(1) infinite; }
+.term .out{ opacity:0; transition:opacity .4s; }
+.term .out.show{ opacity:1; }
+@media (prefers-reduced-motion: reduce){ .term .cursor{ animation:none; } .term .out{ opacity:1; } }
+
+/* ============================================================
+   4. CREDENTIALS
+   ============================================================ */
+.cks{
+  display:grid; grid-template-columns:minmax(0,1fr); gap:var(--space-3);
+  border:1px solid var(--line-strong); padding:var(--space-3);
+  background:linear-gradient(135deg, var(--paper-2), transparent 60%);
+  margin-bottom:var(--space-3); position:relative; overflow:hidden;
+}
+@media (min-width:820px){ .cks{ grid-template-columns:minmax(220px,.5fr) minmax(0,1fr); align-items:center; } }
+.seal{ position:relative; width:min(260px,70vw); aspect-ratio:1; margin:0 auto; }
+.seal svg{ width:100%; height:100%; overflow:visible; }
+.seal .ring{ animation:spin 40s linear infinite; transform-origin:50% 50%; }
+@media (prefers-reduced-motion: reduce){ .seal .ring{ animation:none; } }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+.seal .ring text{ font-family:var(--font-mono); font-size:11.5px; letter-spacing:.22em; fill:var(--ink-2); text-transform:uppercase; }
+.seal .big{ font-family:var(--font-display); font-size:74px; fill:var(--ink); letter-spacing:-0.03em; }
+.seal .sub{ font-family:var(--font-mono); font-size:9px; fill:var(--accent); letter-spacing:.2em; }
+.seal circle.o{ fill:none; stroke:var(--line-strong); stroke-width:1; }
+.seal circle.i{ fill:none; stroke:var(--line); stroke-width:1; stroke-dasharray:2 4; }
+.cks-body h3{ font-family:var(--font-display); font-size:var(--t-3); line-height:1.02; margin-bottom:var(--space-1); }
+.cks-body h3 em{ font-style:italic; color:var(--accent); }
+.cks-body .meta{ display:flex; flex-wrap:wrap; gap:.4rem 1.2rem; font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); margin-bottom:var(--space-2); }
+.cks-body .meta .ok{ color:var(--accent); }
+.cks-body p{ color:var(--ink-2); max-width:60ch; text-wrap:pretty; }
+.domains{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.5rem; margin-top:var(--space-2); }
+.domains li{ font-family:var(--font-mono); font-size:var(--t--1); padding:.5rem .6rem; border:1px solid var(--line); color:var(--ink-2); display:flex; gap:.5rem; align-items:baseline; }
+.domains li::before{ content:"▪"; color:var(--accent); }
+.cks-body .btn{ margin-top:var(--space-2); }
+
+/* ledger */
+.ledger{ font-family:var(--font-mono); font-size:var(--t--1); border-top:1px solid var(--line-strong); }
+.ledger .row{
+  display:grid; grid-template-columns:44px minmax(0,1.6fr) minmax(0,1fr) minmax(0,.8fr) auto;
+  gap:1rem; align-items:center; padding:.9rem 0; border-bottom:1px solid var(--line);
+  transition:background .2s, padding-left .25s var(--ease-out);
+}
+.ledger .row:hover{ background:var(--paper-2); padding-left:.5rem; }
+.ledger .row.hdr{ color:var(--ink-3); padding:.6rem 0; border-bottom:1px solid var(--line-strong); }
+.ledger .row.hdr:hover{ background:none; padding-left:0; }
+.ledger .badge{ width:44px; height:44px; display:grid; place-items:center; border:1px solid var(--line); background:var(--paper-2); overflow:hidden; }
+.ledger .badge img{ width:100%; height:100%; object-fit:contain; padding:3px; }
+.ledger .badge span{ font-size:.62rem; font-weight:600; letter-spacing:.05em; color:var(--ink-2); }
+.ledger .nm{ display:flex; flex-direction:column; gap:.15rem; min-width:0; }
+.ledger .nm b{ font-weight:600; color:var(--ink); }
+.ledger .nm small{ font-family:var(--font-sans); color:var(--ink-3); font-size:.92em; }
+.ledger .st{ color:var(--accent); white-space:nowrap; }
+.ledger .st::before{ content:"● "; }
+.ledger .st.pend{ color:var(--amber); }
+.ledger .st.pend::before{ content:"◐ "; }
+.ledger .lnk{ text-decoration:none; border:1px solid var(--line-strong); padding:.35rem .6rem; border-radius:999px; white-space:nowrap; transition:background .2s, color .2s; }
+.ledger .lnk:hover{ background:var(--ink); color:var(--paper); }
+.ledger .lnk[href="#"]{ border-style:dashed; color:var(--ink-3); }
+@media (max-width:760px){
+  .ledger .row{ grid-template-columns:36px minmax(0,1fr) auto; grid-template-areas:"badge nm lnk" "badge issuer st"; row-gap:.3rem; }
+  .ledger .badge{ width:36px; height:36px; grid-area:badge; }
+  .ledger .nm{ grid-area:nm; } .ledger .is{ grid-area:issuer; } .ledger .st{ grid-area:st; justify-self:start; } .ledger .lnk{ grid-area:lnk; }
+  .ledger .row.hdr{ display:none; }
+}
+.cred-note{ margin-top:var(--space-2); font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); }
+
+/* ============================================================
+   5. EXPERIENCE (rollout history)
+   ============================================================ */
+.feat{ border:1px solid var(--line-strong); background:var(--paper-2); padding:var(--space-3); margin-bottom:var(--space-3); }
+.feat-top{ display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:var(--space-2); align-items:baseline; margin-bottom:var(--space-3); }
+@media (max-width:640px){ .feat-top{ grid-template-columns:1fr; } }
+.rev{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); }
+.rev b{ color:var(--accent); font-weight:600; }
+.feat-top h3{ font-family:var(--font-display); font-size:var(--t-3); line-height:1; }
+.feat-top h3 span{ font-style:italic; color:var(--ink-3); }
+.feat-top .when{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-2); text-align:right; }
+@media (max-width:640px){ .feat-top .when{ text-align:left; } }
+.feat-role{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-2); margin-bottom:var(--space-2); }
+
+.player{ border:1px solid var(--line-strong); background:#0c0e0d; overflow:hidden; }
+.player .bar{ display:flex; align-items:center; gap:.5rem; padding:.45rem .8rem; border-bottom:1px solid #2a2f2c; color:#7f7b70; font-family:var(--font-mono); font-size:var(--t--1); background:#121514; }
+.player .bar i{ width:9px; height:9px; border-radius:50%; border:1px solid #7f7b70; display:inline-block; }
+.player .bar span{ margin-left:auto; color:#b8f542; }
+.player video{ width:100%; aspect-ratio:16/9; background:#0c0e0d; }
+.player .cap{ font-family:var(--font-mono); font-size:var(--t--1); color:#7f7b70; padding:.5rem .8rem; border-top:1px solid #2a2f2c; background:#121514; }
+
+.feat-cols{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:var(--space-2); margin-top:var(--space-3); }
+.feat-cols h4{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); margin-bottom:.6rem; padding-bottom:.4rem; border-bottom:1px solid var(--line); }
+.feat-cols p{ color:var(--ink-2); font-size:.97em; text-wrap:pretty; }
+.stack{ display:flex; flex-wrap:wrap; gap:.4rem; margin-top:var(--space-2); }
+.stack li{ font-family:var(--font-mono); font-size:var(--t--1); padding:.28rem .55rem; border:1px solid var(--line); border-radius:999px; color:var(--ink-2); background:var(--paper); }
+.feat-links{ display:flex; flex-wrap:wrap; gap:.6rem; margin-top:var(--space-3); }
+
+/* previous revisions */
+.revs{ display:grid; grid-template-columns:1fr; border-top:1px solid var(--line-strong); }
+.revs article{ display:grid; grid-template-columns:minmax(0,1fr); gap:var(--space-2); padding:var(--space-3) 0; border-bottom:1px solid var(--line); }
+@media (min-width:820px){ .revs article{ grid-template-columns:200px minmax(0,1fr) minmax(220px,.7fr); } }
+.revs .rev{ align-self:start; }
+.revs .rev .when{ display:block; color:var(--ink-2); margin-top:.3rem; }
+.revs h3{ font-family:var(--font-display); font-size:var(--t-2); line-height:1.05; margin-bottom:.25rem; }
+.revs h3 span{ font-style:italic; color:var(--ink-3); }
+.revs .role{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); margin-bottom:.8rem; }
+.revs p{ color:var(--ink-2); max-width:62ch; text-wrap:pretty; }
+.revs .stack{ margin-top:.9rem; }
+.shots{ display:grid; grid-template-columns:repeat(2,1fr); gap:.4rem; align-self:start; }
+.shots a{ display:block; aspect-ratio:4/3; overflow:hidden; border:1px solid var(--line); background:var(--paper-2); }
+.shots img{ width:100%; height:100%; object-fit:cover; filter:grayscale(.4); transition:filter .4s, transform .8s var(--ease-out); }
+.shots a:hover img{ filter:none; transform:scale(1.04); }
+.mini-player{ align-self:start; border:1px solid var(--line-strong); background:#0c0e0d; }
+.mini-player video{ width:100%; aspect-ratio:16/9; }
+.mini-player .cap{ font-family:var(--font-mono); font-size:var(--t--1); color:#7f7b70; padding:.4rem .6rem; border-top:1px solid #2a2f2c; background:#121514; }
+
+/* ============================================================
+   6. PROJECTS (workloads)
+   ============================================================ */
+.bento{ display:grid; grid-template-columns:repeat(12,1fr); gap:var(--space-2); }
+.cell{ border:1px solid var(--line-strong); padding:var(--space-3); background:var(--paper); position:relative; min-width:0; }
+.cell.soft{ background:var(--paper-2); }
+.cell .cell-kind{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); display:flex; justify-content:space-between; gap:1rem; margin-bottom:var(--space-2); }
+.cell .cell-kind b{ color:var(--accent); font-weight:500; }
+.cell .cell-kind .demo-link{ text-decoration:none; color:var(--ink); white-space:nowrap; }
+.cell .cell-kind .demo-link:hover{ color:var(--accent); }
+.arch-title{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); margin:var(--space-3) 0 .7rem; }
+.arch-title b{ color:var(--accent); font-weight:500; }
+.c12{ grid-column:span 12; } .c8{ grid-column:span 8; } .c6{ grid-column:span 6; } .c4{ grid-column:span 4; }
+@media (max-width:980px){ .c8,.c4{ grid-column:span 6; } }
+@media (max-width:700px){ .c8,.c6,.c4{ grid-column:span 12; } }
+
+.proj-title{ font-family:var(--font-display); font-size:var(--t-3); line-height:1; margin-bottom:.4rem; }
+.proj-title em{ font-style:italic; color:var(--accent); }
+.proj-sub{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); margin-bottom:var(--space-2); }
+.proj-lede{ color:var(--ink-2); max-width:64ch; text-wrap:pretty; font-size:var(--t-1); line-height:1.4; }
+
+.flow{ counter-reset:step; margin-top:var(--space-2); border-top:1px solid var(--line); }
+.flow li{ counter-increment:step; display:grid; grid-template-columns:2.6rem minmax(0,1fr); gap:.6rem; padding:.75rem 0; border-bottom:1px solid var(--line); color:var(--ink-2); font-size:.97em; }
+.flow li::before{ content:"0" counter(step); font-family:var(--font-mono); font-size:var(--t--1); color:var(--accent); padding-top:.15em; }
+.flow li code{ font-family:var(--font-mono); font-size:.9em; background:var(--paper-2); padding:.05em .35em; border:1px solid var(--line); color:var(--ink); }
+
+/* decisions */
+.dec{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr)); gap:1px; background:var(--line); border:1px solid var(--line-strong); }
+.dec article{ background:var(--paper); padding:var(--space-2); display:flex; flex-direction:column; gap:.5rem; transition:background .25s; }
+.dec article:hover{ background:var(--paper-2); }
+.dec .id{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); display:flex; justify-content:space-between; }
+.dec .id b{ color:var(--accent); font-weight:500; }
+.dec h4{ font-family:var(--font-display); font-size:var(--t-2); line-height:1.05; }
+.dec p{ color:var(--ink-2); font-size:.94em; text-wrap:pretty; }
+.dec p code{ font-family:var(--font-mono); font-size:.88em; color:var(--ink); }
+
+/* architecture */
+.arch-wrap{ overflow-x:auto; border:1px solid var(--line-strong); background:var(--paper-2); }
+.arch{ min-width:820px; width:100%; height:auto; }
+.arch text{ font-family:var(--font-mono); font-size:12px; fill:var(--ink); }
+.arch text.sm{ font-size:10px; fill:var(--ink-3); }
+.arch text.lbl{ font-size:10px; fill:var(--ink-3); }
+.arch rect.node{ fill:var(--paper); stroke:var(--line-strong); stroke-width:1; }
+.arch rect.side{ fill:var(--paper); stroke:var(--ink-3); stroke-width:1; stroke-dasharray:3 3; }
+.arch rect.acc{ fill:var(--accent-soft); stroke:var(--accent); }
+.arch .edge{ fill:none; stroke:var(--ink-2); stroke-width:1.2; marker-end:url(#arr); }
+.arch .edge.sync{ stroke:var(--accent); stroke-dasharray:6 5; animation:dash 1.6s linear infinite; }
+.arch .edge.sec{ stroke:var(--ink-3); stroke-dasharray:2 4; }
+@keyframes dash{ to{ stroke-dashoffset:-22; } }
+@media (prefers-reduced-motion: reduce){ .arch .edge.sync{ animation:none; } }
+.arch .legend text{ font-size:10px; fill:var(--ink-3); }
+.arch-cap{ display:flex; flex-wrap:wrap; gap:.6rem 1.4rem; font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); margin-top:.7rem; }
+.arch-cap i{ display:inline-block; width:22px; border-top:2px solid var(--ink-2); vertical-align:middle; margin-right:.4rem; }
+.arch-cap i.sync{ border-top-style:dashed; border-color:var(--accent); }
+
+/* metric cards (nexus, market) */
+.metrics{ display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem; margin:var(--space-2) 0; }
+@media (max-width:420px){ .metrics{ grid-template-columns:repeat(2,1fr); } }
+.metrics li{ border-top:1px solid var(--line-strong); padding-top:.5rem; }
+.metrics b{ display:block; font-family:var(--font-display); font-size:var(--t-3); line-height:1; font-weight:400; letter-spacing:-0.02em; }
+.metrics small{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); }
+.cell p.body{ color:var(--ink-2); text-wrap:pretty; }
+.cell .links{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:var(--space-2); }
+
+/* ============================================================
+   7. SKILLS (node pools)
+   ============================================================ */
+.pools{ border-top:1px solid var(--line-strong); }
+.pool{ display:grid; grid-template-columns:minmax(0,1fr); gap:.6rem var(--space-2); padding:var(--space-2) 0; border-bottom:1px solid var(--line); }
+@media (min-width:760px){ .pool{ grid-template-columns:220px minmax(0,1fr); } }
+.pool .pn{ font-family:var(--font-mono); font-size:var(--t--1); display:flex; flex-direction:column; gap:.2rem; }
+.pool .pn b{ font-weight:600; color:var(--ink); }
+.pool .pn span{ color:var(--accent); }
+.pool .pn span::before{ content:"● "; }
+.chips{ display:flex; flex-wrap:wrap; gap:.4rem; }
+.chips li{
+  font-family:var(--font-mono); font-size:var(--t--1); padding:.32rem .6rem;
+  border:1px solid var(--line); background:var(--paper); color:var(--ink-2);
+  transition:border-color .2s, color .2s, background .2s, transform .3s var(--ease-spring);
+}
+.chips li:hover{ border-color:var(--accent); color:var(--ink); background:var(--accent-soft); transform:translateY(-2px); }
+.chips li.hot{ border-color:var(--line-strong); color:var(--ink); }
+
+/* ============================================================
+   8. EDUCATION + ANNOTATIONS
+   ============================================================ */
+.edu{ display:grid; grid-template-columns:minmax(0,1fr); gap:var(--space-2); }
+@media (min-width:820px){ .edu{ grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); } }
+.edu .cell h3{ font-family:var(--font-display); font-size:var(--t-2); line-height:1.05; margin-bottom:.3rem; }
+.edu .cell h3 em{ font-style:italic; color:var(--accent); }
+.edu .cell .where{ color:var(--ink-2); }
+.edu .cell .meta{ font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); display:flex; flex-wrap:wrap; gap:.4rem 1.2rem; margin-top:.8rem; }
+.edu .cell .meta .ok{ color:var(--accent); }
+.yaml{ font-family:var(--font-mono); font-size:var(--t--1); line-height:1.75; color:var(--ink-2); margin:0; white-space:pre; overflow-x:auto; }
+.yaml .k{ color:var(--ink); } .yaml .v{ color:var(--accent); } .yaml .c{ color:var(--ink-3); font-style:italic; }
+
+/* ============================================================
+   9. CONTACT (expose)
+   ============================================================ */
+.contact{ padding-bottom:var(--space-3); }
+.contact .big{ font-family:var(--font-display); font-size:var(--t-4); line-height:.95; letter-spacing:-0.02em; margin-bottom:var(--space-3); max-width:14ch; }
+.contact .big em{ font-style:italic; color:var(--accent); }
+.contact-grid{ display:grid; grid-template-columns:minmax(0,1fr); gap:var(--space-3); }
+@media (min-width:820px){ .contact-grid{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
+.clist{ border-top:1px solid var(--line-strong); }
+.clist li{ display:grid; grid-template-columns:110px minmax(0,1fr) auto; gap:1rem; align-items:center; padding:.9rem 0; border-bottom:1px solid var(--line); font-family:var(--font-mono); font-size:var(--t--1); }
+@media (max-width:480px){ .clist li{ grid-template-columns:80px minmax(0,1fr) auto; } }
+.clist .k{ color:var(--ink-3); }
+.clist a{ text-decoration:none; color:var(--ink); word-break:break-all; }
+.clist a:hover{ color:var(--accent); }
+.clist .cp{ font-family:var(--font-mono); font-size:var(--t--1); border:1px solid var(--line); padding:.25rem .5rem; border-radius:999px; color:var(--ink-3); transition:all .2s; }
+.clist .cp:hover{ border-color:var(--line-strong); color:var(--ink); }
+.clist .cp.done{ border-color:var(--accent); color:var(--accent); }
+
+footer{ padding:var(--space-2) var(--gutter); border-top:1px solid var(--line-strong); display:flex; flex-wrap:wrap; justify-content:space-between; gap:.6rem 1.5rem; font-family:var(--font-mono); font-size:var(--t--1); color:var(--ink-3); }
+footer a{ text-decoration:none; }
+footer a:hover{ color:var(--ink); }
+
+/* view transition for theme flip */
+::view-transition-old(root),::view-transition-new(root){ animation-duration:.55s; mix-blend-mode:normal; }
+::view-transition-old(root){ animation-name:vt-out; }
+::view-transition-new(root){ animation-name:vt-in; }
+@keyframes vt-in{ from{ clip-path:circle(0% at var(--vx,100%) var(--vy,0%)); } to{ clip-path:circle(150% at var(--vx,100%) var(--vy,0%)); } }
+@keyframes vt-out{ from{ opacity:1; } to{ opacity:1; } }
+@media (prefers-reduced-motion: reduce){ ::view-transition-old(root),::view-transition-new(root){ animation:none; } }
+
+/* lightbox */
+.lb{ position:fixed; inset:0; z-index:90; background:rgba(12,14,13,.92); display:none; place-items:center; padding:var(--gutter); }
+.lb[open]{ display:grid; }
+.lb img{ max-width:min(1100px,100%); max-height:88vh; object-fit:contain; border:1px solid #2a2f2c; }
+.lb button{ position:absolute; top:1rem; right:1rem; color:#ebe8de; font-family:var(--font-mono); border:1px solid #2a2f2c; padding:.4rem .7rem; border-radius:999px; }
+.lb button:hover{ background:#ebe8de; color:#0c0e0d; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+
+<div class="frame">
+
+  <!-- ===================== RAIL (desktop) ===================== -->
+  <aside class="rail" aria-label="Site navigation">
+    <a class="brand" href="#top" aria-label="Back to top">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="name">zakaria-rekhla</span>
+    </a>
+
+    <nav class="rail-nav" aria-label="Sections">
+      <div class="hdr" aria-hidden="true"><span>#</span><span>NAME</span><span>STATUS</span></div>
+      <a href="#top" data-nav="top"><span>00</span><span>overview</span><span class="st">Pending</span></a>
+      <a href="#credentials" data-nav="credentials"><span>01</span><span>credentials</span><span class="st">Pending</span></a>
+      <a href="#experience" data-nav="experience"><span>02</span><span>rollouts</span><span class="st">Pending</span></a>
+      <a href="#projects" data-nav="projects"><span>03</span><span>workloads</span><span class="st">Pending</span></a>
+      <a href="#skills" data-nav="skills"><span>04</span><span>node-pools</span><span class="st">Pending</span></a>
+      <a href="#education" data-nav="education"><span>05</span><span>education</span><span class="st">Pending</span></a>
+      <a href="#contact" data-nav="contact"><span>06</span><span>expose</span><span class="st">Pending</span></a>
+    </nav>
+
+    <div class="rail-foot">
+      <button class="theme-btn js-theme" type="button" aria-label="Toggle color theme"><span class="sw" aria-hidden="true"></span><span class="lbl">theme: </span></button>
+      <a class="btn" href="./assets/Zakarai_Rekhla_resume.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M8 2v9m0 0 3-3m-3 3-3-3M3 13h10"/></svg>
+        resume.pdf
+      </a>
+      <div class="clock"><span class="js-clock">--:--</span> · Marrakech (UTC+1)</div>
+    </div>
+  </aside>
+
+  <!-- ===================== TOP BAR (mobile / tablet) ===================== -->
+  <header class="topbar">
+    <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>zakaria-rekhla</a>
+    <nav aria-label="Sections">
+      <a href="#credentials" data-nav="credentials">credentials</a>
+      <a href="#experience" data-nav="experience">rollouts</a>
+      <a href="#projects" data-nav="projects">workloads</a>
+      <a href="#skills" data-nav="skills">node-pools</a>
+      <a href="#contact" data-nav="contact">expose</a>
+    </nav>
+    <button class="theme-btn js-theme" type="button" aria-label="Toggle color theme"><span class="sw" aria-hidden="true"></span><span class="lbl"></span></button>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== 00 HERO ===================== -->
+    <section class="sec hero" id="top" data-sec="top">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow rv in">
+            <span><b>apiVersion:</b> portfolio/v2</span>
+            <span><b>kind:</b> Engineer</span>
+            <span><b>namespace:</b> Safi</span>
+            <span><b>status:</b> <span style="color:var(--accent)">Ready</span></span>
+          </p>
+          <h1 class="display">
+            <span class="l"><span class="rv-clip in" data-d="1">Zakaria</span></span>
+            <span class="l"><span class="rv-clip in" data-d="2"><em>Rekhla.</em></span></span>
+          </h1>
+          <p class="lede rv in" data-d="3">
+            <strong>DevOps &amp; Cloud Engineer.</strong> I build the platforms other engineers deploy on —
+            Kubernetes-first, GitOps-driven, and secured by default. Currently finishing a Master's in
+            Information Systems Engineering while shipping multi-cluster platforms in production.
+          </p>
+          <div class="hero-cta rv in" data-d="4">
+            <a class="btn primary magnet" href="#experience">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M8 3v10m0 0 4-4m-4 4-4-4"/></svg>
+              see the work
+            </a>
+            <a class="btn magnet" href="#credentials">6 certifications</a>
+            <a class="btn magnet" href="mailto:zakariarekhla0@gmail.com">say hello</a>
+          </div>
+        </div>
+
+        <figure class="portrait rv in" data-d="3">
+          <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span>
+          <img src="./assets/image.png" alt="Portrait of Zakaria Rekhla" width="589" height="686" loading="eager" decoding="async">
+          <figcaption class="tag"><span>pod/zakaria-rekhla</span><span class="ok">1/1 Running</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="term rv in" data-d="5" aria-label="Terminal summary">
+        <div class="bar"><i></i><i></i><i></i><span>zsh — kubectl</span></div>
+<pre><span class="p">~ $</span> <span class="cmd js-type" data-text="kubectl get engineer zakaria -o wide"></span><span class="cursor js-cursor" aria-hidden="true"></span>
+<span class="out js-out"><span class="hd">NAME      ROLE                    FOCUS                          CERTS   STATUS   DEGREE</span>
+zakaria   devops-cloud-engineer   kubernetes,gitops,security     6       <span class="ok">Ready</span>    msc-info-systems-eng/2026
+
+<span class="p">~ $</span> <span class="cmd">kubectl describe engineer zakaria | grep -A3 Certifications</span>
+<span class="hd">Certifications:</span>
+  CNCF:    CKS  CKA  KCSA  KCNA
+  AWS:     Cloud Practitioner
+  Cisco:   CCNA</span></pre>
+      </div>
+    </section>
+
+    <!-- ===================== 01 CREDENTIALS ===================== -->
+    <section class="sec" id="credentials" data-sec="credentials">
+      <header class="sec-head rv">
+        <span class="idx">01</span>
+        <h2>Credentials, <em>verified.</em></h2>
+        <span class="kind">kind: Certification · issuer: CNCF / AWS / Cisco</span>
+      </header>
+
+      <!-- Headline credential: CKS -->
+      <article class="cks rv" data-d="1">
+        <div class="seal" aria-hidden="true">
+          <svg viewBox="0 0 260 260">
+            <defs>
+              <path id="ringPath" d="M130,130 m-104,0 a104,104 0 1,1 208,0 a104,104 0 1,1 -208,0"/>
+            </defs>
+            <circle class="o" cx="130" cy="130" r="118"/>
+            <circle class="i" cx="130" cy="130" r="88"/>
+            <g class="ring">
+              <text><textPath href="#ringPath" startOffset="0">Certified Kubernetes Security Specialist · CNCF · Certified Kubernetes Security Specialist · CNCF ·</textPath></text>
+            </g>
+            <text class="big" x="130" y="150" text-anchor="middle">CKS</text>
+            <text class="sub" x="130" y="176" text-anchor="middle">STATUS: VERIFIED</text>
+          </svg>
+        </div>
+        <div class="cks-body">
+          <h3>Certified Kubernetes <em>Security</em> Specialist</h3>
+          <div class="meta">
+            <span>issuer: Cloud Native Computing Foundation</span>
+            <span>type: performance-based, hands-on</span>
+            <span class="ok">● headline credential</span>
+          </div>
+          <p>
+            The CNCF's most advanced Kubernetes certification and the one I'm proudest of. It's a live-cluster,
+            terminal-only exam that requires a valid CKA first, and it tests whether you can actually harden a
+            cluster under time pressure rather than describe how you would.
+          </p>
+          <ul class="domains" aria-label="CKS exam domains">
+            <li>Cluster setup &amp; hardening</li>
+            <li>System hardening</li>
+            <li>Minimize microservice vulnerabilities</li>
+            <li>Supply chain security</li>
+            <li>Monitoring, logging &amp; runtime security</li>
+          </ul>
+          <a class="btn magnet" href="https://www.credly.com/badges/c2160c69-56c3-4eaf-8a7e-911473f80712/public_url" target="_blank" rel="noopener">verify credential ↗</a>
+        </div>
+      </article>
+
+      <!-- Ledger of all credentials -->
+      <div class="ledger rv" data-d="2" role="table" aria-label="Certification ledger">
+        <div class="row hdr" role="row"><span></span><span role="columnheader">NAME</span><span role="columnheader">ISSUER</span><span role="columnheader">STATUS</span><span role="columnheader">VERIFY</span></div>
+
+        <div class="row" role="row">
+          <span class="badge" role="cell"><img src="./assets/cks.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="nm" role="cell"><b>CKS</b><small>Certified Kubernetes Security Specialist</small></span>
+          <span class="is" role="cell">CNCF · Linux Foundation</span>
+          <span class="st" role="cell">Earned</span>
+          <a class="lnk" role="cell" href="https://www.credly.com/badges/c2160c69-56c3-4eaf-8a7e-911473f80712/public_url" target="_blank" rel="noopener">credly ↗</a>
+        </div>
+
+        <div class="row" role="row">
+          <span class="badge" role="cell"><img src="./assets/cka.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="nm" role="cell"><b>CKA</b><small>Certified Kubernetes Administrator</small></span>
+          <span class="is" role="cell">CNCF · Linux Foundation</span>
+          <span class="st" role="cell">Earned</span>
+          <a class="lnk" role="cell" href="https://www.credly.com/badges/ee1c20fb-3327-4c8d-9b80-10f2ed0ebe3a/public_url" target="_blank" rel="noopener">credly ↗</a>
+        </div>
+
+        <div class="row" role="row">
+          <span class="badge" role="cell"><img src="./assets/KCSA.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="nm" role="cell"><b>KCSA</b><small>Kubernetes and Cloud Native Security Associate</small></span>
+          <span class="is" role="cell">CNCF · Linux Foundation</span>
+          <span class="st" role="cell">Earned</span>
+          <a class="lnk" role="cell" href="https://www.credly.com/badges/45b461de-b7e3-4bf3-93c6-9d2829d18ec6/public_url" target="_blank" rel="noopener">credly ↗</a>
+        </div>
+
+        <div class="row" role="row">
+          <span class="badge" role="cell"><img src="./assets/KCNA.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="nm" role="cell"><b>KCNA</b><small>Kubernetes and Cloud Native Associate</small></span>
+          <span class="is" role="cell">CNCF · Linux Foundation</span>
+          <span class="st" role="cell">Earned</span>
+          <a class="lnk" role="cell" href="https://www.credly.com/badges/ff85a052-4798-41e9-8def-b84ff9a3f97c/public_url" target="_blank" rel="noopener">credly ↗</a>
+        </div>
+
+        <div class="row" role="row">
+          <span class="badge" role="cell"><img src="./assets/AwsCCP.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="nm" role="cell"><b>AWS CCP</b><small>AWS Certified Cloud Practitioner</small></span>
+          <span class="is" role="cell">Amazon Web Services</span>
+          <span class="st" role="cell">Earned</span>
+          <a class="lnk" role="cell" href="https://www.credly.com/badges/4262caf0-7807-4582-a1ef-358b458da365/public_url" target="_blank" rel="noopener">credly ↗</a>
+        </div>
+
+        <div class="row" role="row">
+          <span class="badge" role="cell"><img src="./assets/CCNA.png" alt="" loading="lazy" decoding="async"></span>
+          <span class="nm" role="cell"><b>CCNA</b><small>Switching, Routing &amp; Wireless Essentials</small></span>
+          <span class="is" role="cell">Cisco Networking Academy</span>
+          <span class="st" role="cell">Earned</span>
+          <a class="lnk" role="cell" href="https://www.credly.com/badges/27bf579b-aa50-4a5f-bb9d-420ca002bde0/public_url" target="_blank" rel="noopener">credly ↗</a>
+        </div>
+      </div>
+      <p class="cred-note rv" data-d="3">// four CNCF credentials spanning the security track (KCSA → CKS) and the administration track (KCNA → CKA), plus cloud and network fundamentals.</p>
+    </section>
+
+    <!-- ===================== 02 EXPERIENCE ===================== -->
+    <section class="sec" id="experience" data-sec="experience">
+      <header class="sec-head rv">
+        <span class="idx">02</span>
+        <h2>Rollout <em>history.</em></h2>
+        <span class="kind">kind: Experience · order: newest first</span>
+      </header>
+
+      <!-- Featured: Atlas Cloud Service -->
+      <article class="feat rv" data-d="1" id="atlas">
+        <div class="feat-top">
+          <span class="rev"><b>REV 3</b> · current</span>
+          <h3>Atlas Cloud Service <span>— multi-cluster GitOps platform</span></h3>
+          <span class="when">Feb 2026 → Aug 2026</span>
+        </div>
+        <p class="feat-role">DevOps / Cloud Engineer Intern · platform engineering</p>
+
+        <!-- TODO: optional poster image ./assets/videos/acs-poster.jpg -->
+        <div class="player" id="atlas-demo">
+          <div class="bar"><i></i><i></i><i></i>ACS.mp4 — catalogue-acs<span>● REC</span></div>
+          <video controls preload="metadata" playsinline poster="./assets/videos/acs-poster.jpg" aria-label="Demo of the Catalogue ACS self-service deployment platform">
+            <source src="./assets/videos/ACS.mp4" type="video/mp4">
+            Your browser doesn't support embedded video. <a href="./assets/videos/ACS.mp4">Download the demo</a> instead.
+          </video>
+          <div class="cap">demo · browse chart catalogue → 3-step deploy wizard → live SSE status → Fleet sync to target cluster</div>
+        </div>
+
+        <div class="feat-cols">
+          <div class="rv" data-d="1">
+            <h4>platform</h4>
+            <p>Designed and deployed a multi-cluster GitOps platform on Kubernetes with Rancher for cluster management and Fleet for declarative, pull-based delivery to every target cluster.</p>
+          </div>
+          <div class="rv" data-d="2">
+            <h4>pipelines</h4>
+            <p>Built CI/CD with GitLab CI/CD and Helm: images pushed to Harbor, charts versioned and promoted, deployments reconciled from Git rather than pushed from a runner.</p>
+          </div>
+          <div class="rv" data-d="3">
+            <h4>self-service app</h4>
+            <p>Built a full-stack deployment platform (Next.js + Spring Boot) with real-time SSE status streaming, Redis caching, and Vault-backed secrets injected through External Secrets Operator.</p>
+          </div>
+        </div>
+
+        <ul class="stack" aria-label="Technologies">
+          <li>Kubernetes</li><li>Rancher</li><li>Fleet</li><li>GitLab CI/CD</li><li>Helm</li><li>Harbor</li>
+          <li>HashiCorp Vault</li><li>External Secrets Operator</li><li>Redis</li><li>Spring Boot</li><li>Next.js</li><li>Keycloak</li><li>PostgreSQL</li>
+        </ul>
+
+        <div class="feat-links">
+          <a class="btn primary magnet" href="#catalogue">read the case study ↓</a>
+        </div>
+      </article>
+
+      <!-- Earlier revisions -->
+      <div class="revs">
+        <article class="rv" data-d="1">
+          <div class="rev"><b>REV 2</b><span class="when">May → Jun 2024</span><span class="when">Marrakech</span></div>
+          <div>
+            <h3>Norsys Africa <span>— blood-pressure monitoring</span></h3>
+            <p class="role">Full Stack Developer Intern</p>
+            <p>Built a blood-pressure monitoring application with AI integration and real-time alerting: a Flutter mobile client for readings, a Next.js dashboard, a Laravel API, and Hugging Face models for analysis, with Firebase push notifications when a reading crosses a threshold.</p>
+            <ul class="stack" aria-label="Technologies"><li>Next.js</li><li>Flutter</li><li>Laravel</li><li>Hugging Face</li><li>Firebase</li><li>MongoDB Atlas</li><li>Docker</li></ul>
+            <div class="links" style="margin-top:.9rem"><a class="btn magnet" href="https://github.com/ZakariaRek/Blood-Pressure" target="_blank" rel="noopener">github ↗</a></div>
+          </div>
+          <div class="shots" aria-label="Screenshots">
+            <a href="./assets/norsys/1.png" data-lb><img src="./assets/norsys/1.png" alt="Norsys blood-pressure app screenshot 1" loading="lazy" decoding="async"></a>
+            <a href="./assets/norsys/2.png" data-lb><img src="./assets/norsys/2.png" alt="Norsys blood-pressure app screenshot 2" loading="lazy" decoding="async"></a>
+            <a href="./assets/norsys/3.png" data-lb><img src="./assets/norsys/3.png" alt="Norsys blood-pressure app screenshot 3" loading="lazy" decoding="async"></a>
+            <a href="./assets/norsys/4.png" data-lb><img src="./assets/norsys/4.png" alt="Norsys blood-pressure app screenshot 4" loading="lazy" decoding="async"></a>
+          </div>
+        </article>
+
+        <article class="rv" data-d="2">
+          <div class="rev"><b>REV 1</b><span class="when">Mar → Jun 2024</span><span class="when">Safi</span></div>
+          <div>
+            <h3>Ministry of Health &amp; Social Protection <span>— MedConnect</span></h3>
+            <p class="role">Full Stack Developer Intern</p>
+            <p>Digitized medical records for a regional health service with MedConnect: patient files, appointments and reporting in one Next.js + Express application, secured with JWT and visualized with Chart.js. Cut manual processing by 85%.</p>
+            <ul class="stack" aria-label="Technologies"><li>Next.js</li><li>Express.js</li><li>MongoDB</li><li>JWT</li><li>Chart.js</li></ul>
+          </div>
+          <div class="mini-player">
+            <video controls preload="none" playsinline aria-label="MedConnect walkthrough">
+              <source src="./assets/medc/1.mp4" type="video/mp4">
+            </video>
+            <div class="cap">medconnect-walkthrough.mp4</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== 03 PROJECTS ===================== -->
+    <section class="sec" id="projects" data-sec="projects">
+      <header class="sec-head rv">
+        <span class="idx">03</span>
+        <h2>Workloads <em>in production.</em></h2>
+        <span class="kind">kind: Project · replicas: 3</span>
+      </header>
+
+      <div class="bento">
+
+        <!-- ---------- a) Catalogue ACS ---------- -->
+        <article class="cell c12 soft rv" id="catalogue" data-d="1">
+          <div class="cell-kind"><span><b>project/01</b> · featured · Atlas Cloud Service · 2026</span><a href="#atlas-demo" class="demo-link">▶ watch the demo</a></div>
+          <h3 class="proj-title">Catalogue ACS — <em>multi-cluster GitOps deployment platform</em></h3>
+          <p class="proj-sub">self-service · Helm catalogue · Rancher Fleet · Vault · Keycloak OIDC</p>
+          <p class="proj-lede">
+            A self-service platform where a developer picks a Helm chart from a curated catalogue, walks through a
+            3-step wizard, and gets a running workload on a Rancher-managed cluster — without ever touching
+            <code class="mono">kubectl</code>, a cluster token, or a secret. Everything flows through Git.
+          </p>
+
+
+          <!-- Architecture -->
+          <p class="arch-title"><b>architecture</b> · request &amp; reconciliation path</p>
+          <div class="arch-wrap">
+            <svg class="arch" viewBox="0 0 1000 470" role="img" aria-labelledby="archTitle archDesc">
+              <title id="archTitle">Catalogue ACS architecture</title>
+              <desc id="archDesc">Browser to ingress to Next.js frontend and Spring Boot backend; backend commits to a GitLab GitOps repo; Rancher Fleet syncs to target clusters. Keycloak provides OIDC; Vault and External Secrets Operator supply secrets; an import pipeline replicates charts and images from an upstream OCI registry into Harbor, from which clusters pull images.</desc>
+              <defs>
+                <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-2)"/>
+                </marker>
+              </defs>
+
+              <!-- lanes -->
+              <text class="lbl" x="20" y="22">EDGE</text>
+              <text class="lbl" x="230" y="22">PLATFORM</text>
+              <text class="lbl" x="660" y="22">GITOPS</text>
+              <text class="lbl" x="850" y="22">TARGETS</text>
+              <line x1="215" y1="10" x2="215" y2="460" stroke="var(--line)" stroke-dasharray="2 4"/>
+              <line x1="645" y1="10" x2="645" y2="460" stroke="var(--line)" stroke-dasharray="2 4"/>
+              <line x1="835" y1="10" x2="835" y2="460" stroke="var(--line)" stroke-dasharray="2 4"/>
+
+              <!-- Browser -->
+              <rect class="node" x="20" y="60" width="150" height="54"/>
+              <text x="32" y="82">Browser</text><text class="sm" x="32" y="100">Next.js UI · SSE</text>
+
+              <!-- Ingress -->
+              <rect class="node" x="20" y="150" width="150" height="54"/>
+              <text x="32" y="172">Ingress</text><text class="sm" x="32" y="190">TLS · routing</text>
+
+              <!-- Frontend -->
+              <rect class="node" x="240" y="60" width="170" height="54"/>
+              <text x="252" y="82">Frontend</text><text class="sm" x="252" y="100">Next.js · NextAuth.js</text>
+
+              <!-- Backend -->
+              <rect class="node acc" x="240" y="150" width="170" height="54"/>
+              <text x="252" y="172">Backend</text><text class="sm" x="252" y="190">Spring Boot · Resource Server</text>
+
+              <!-- Keycloak -->
+              <rect class="side" x="460" y="60" width="160" height="54"/>
+              <text x="472" y="82">Keycloak</text><text class="sm" x="472" y="100">OIDC · RBAC</text>
+
+              <!-- Data -->
+              <rect class="node" x="240" y="250" width="170" height="54"/>
+              <text x="252" y="272">State</text><text class="sm" x="252" y="290">PostgreSQL · Redis · MinIO</text>
+
+              <!-- Vault / ESO -->
+              <rect class="side" x="20" y="350" width="150" height="54"/>
+              <text x="32" y="372">Vault</text><text class="sm" x="32" y="390">source of truth</text>
+              <rect class="side" x="240" y="350" width="170" height="54"/>
+              <text x="252" y="372">External Secrets</text><text class="sm" x="252" y="390">Operator → k8s Secrets</text>
+
+              <!-- OCI upstream / Harbor -->
+              <rect class="side" x="460" y="350" width="160" height="54"/>
+              <text x="472" y="372">Upstream OCI</text><text class="sm" x="472" y="390">chart &amp; image source</text>
+              <rect class="side" x="670" y="350" width="150" height="54"/>
+              <text x="682" y="372">Harbor</text><text class="sm" x="682" y="390">private registry</text>
+
+              <!-- GitLab -->
+              <rect class="node" x="670" y="150" width="150" height="54"/>
+              <text x="682" y="172">GitLab</text><text class="sm" x="682" y="190">GitOps repo</text>
+
+              <!-- Fleet -->
+              <rect class="node acc" x="670" y="250" width="150" height="54"/>
+              <text x="682" y="272">Rancher Fleet</text><text class="sm" x="682" y="290">bundle reconciler</text>
+
+              <!-- Clusters (stack) -->
+              <rect class="node" x="876" y="216" width="104" height="54" opacity=".45"/>
+              <rect class="node" x="868" y="208" width="104" height="54" opacity=".7"/>
+              <rect class="node" x="860" y="200" width="104" height="54"/>
+              <text x="870" y="222">Cluster N</text><text class="sm" x="870" y="240">Rancher-managed</text>
+
+              <!-- edges: request path -->
+              <path class="edge" d="M95,114 V150"/>
+              <path class="edge" d="M170,177 H240"/>
+              <path class="edge" d="M170,167 C210,167 210,87 240,87"/>
+              <path class="edge" d="M325,114 V150"/>
+              <path class="edge" d="M325,204 V250"/>
+              <!-- OIDC -->
+              <path class="edge sec" d="M460,87 H410"/>
+              <path class="edge sec" d="M460,100 C440,100 440,165 410,165"/>
+              <text class="lbl" x="417" y="80">OIDC</text>
+              <!-- SSE back to browser -->
+              <path class="edge sync" d="M240,190 C205,190 205,100 170,100"/>
+              <text class="lbl" x="178" y="128">SSE</text>
+              <!-- commit -->
+              <path class="edge" d="M410,177 H670"/>
+              <text class="lbl" x="425" y="170">git commit fleet.yaml + values.yaml</text>
+              <!-- fleet sync -->
+              <path class="edge sync" d="M745,204 V250"/>
+              <text class="lbl" x="752" y="232">watch</text>
+              <path class="edge sync" d="M820,277 C845,277 845,227 860,227"/>
+              <text class="lbl" x="836" y="298">reconcile</text>
+              <!-- secrets -->
+              <path class="edge sec" d="M170,377 H240"/>
+              <path class="edge sec" d="M325,350 V304"/>
+              <text class="lbl" x="333" y="332">inject</text>
+              <!-- registry -->
+              <path class="edge" d="M620,377 H670"/>
+              <text class="lbl" x="612" y="420">import pipeline</text>
+              <path class="edge" d="M820,377 C860,377 912,377 912,272"/>
+              <text class="lbl" x="922" y="330">pull images</text>
+              <!-- import trigger from backend -->
+              <path class="edge sec" d="M410,190 C450,190 500,290 540,350"/>
+              <text class="lbl" x="555" y="332">discover versions</text>
+            </svg>
+          </div>
+          <div class="arch-cap">
+            <span><i></i>request / commit</span>
+            <span><i class="sync"></i>reconcile &amp; stream</span>
+          </div>
+        </article>
+
+
+
+        <!-- ---------- b) NexusCommerce ---------- -->
+        <article class="cell c6 rv" data-d="2">
+          <div class="cell-kind"><span><b>project/02</b> · cloud-native e-commerce</span><span>May 2025</span></div>
+          <h3 class="proj-title">Nexus<em>Commerce</em></h3>
+          <p class="proj-sub">8 microservices · Spring Boot + Go · Kafka · BFF · AWS EKS</p>
+          <ul class="metrics" aria-label="Key results">
+            <li><b>8</b><small>microservices</small></li>
+            <li><b>−70%</b><small>API calls via BFF</small></li>
+            <li><b>&lt;200ms</b><small>p. response, Redis</small></li>
+          </ul>
+          <p class="body">
+            An event-driven e-commerce ecosystem: eight Spring Boot and Go services communicating over Apache Kafka,
+            fronted by a Backend-for-Frontend that collapses chatty client calls into single aggregated responses.
+            Infrastructure is Terraform on AWS EKS, delivery is ArgoCD GitOps, traffic is Istio service mesh with mTLS,
+            and observability is the full stack: ELK for logs, Prometheus/Grafana for metrics, Zipkin for traces.
+          </p>
+          <ul class="stack" aria-label="Technologies"><li>Spring Boot</li><li>Go</li><li>Kafka</li><li>Redis</li><li>AWS EKS</li><li>Terraform</li><li>ArgoCD</li><li>Istio</li><li>ELK</li><li>Prometheus</li><li>Grafana</li><li>Zipkin</li></ul>
+          <div class="links">
+            <a class="btn magnet" href="https://github.com/ZakariaRek/Ecommerce-App" target="_blank" rel="noopener">services ↗</a>
+            <a class="btn magnet" href="https://github.com/ZakariaRek/Ecommerce-App-Helm-Charts" target="_blank" rel="noopener">helm charts ↗</a>
+            <a class="btn magnet" href="https://github.com/ZakariaRek/gitops-repo_ArgoCD" target="_blank" rel="noopener">gitops repo ↗</a>
+          </div>
+        </article>
+
+        <!-- ---------- c) Market Impact Analysis ---------- -->
+        <article class="cell c6 rv" data-d="3">
+          <div class="cell-kind"><span><b>project/03</b> · financial intelligence</span><span>Oct 2024 → Jan 2025</span></div>
+          <h3 class="proj-title">Market Impact <em>Analysis</em></h3>
+          <p class="proj-sub">4 microservices · Go + Java · AI predictions · FluxCD + Flagger</p>
+          <ul class="metrics" aria-label="Key results">
+            <li><b>12.5k+</b><small>articles / hour</small></li>
+            <li><b>78.5%</b><small>prediction accuracy</small></li>
+            <li><b>99.95%</b><small>uptime on EKS</small></li>
+          </ul>
+          <p class="body">
+            A real-time financial news pipeline that ingests, classifies and scores articles for market impact,
+            then predicts direction per instrument. Four Go and Java services on AWS EKS, delivered by FluxCD with
+            Flagger progressive canary releases so a bad model version rolls back automatically on error-rate regressions.
+          </p>
+          <ul class="stack" aria-label="Technologies"><li>Go</li><li>Java</li><li>AWS EKS</li><li>FluxCD</li><li>Flagger</li><li>Kafka</li><li>Prometheus</li></ul>
+          <div class="links">
+            <a class="btn magnet" href="https://github.com/ZakariaRek/Real-Time-Financial-News-Market-Impact-Analysis-system" target="_blank" rel="noopener">github ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===================== 04 SKILLS ===================== -->
+    <section class="sec" id="skills" data-sec="skills">
+      <header class="sec-head rv">
+        <span class="idx">04</span>
+        <h2>Node <em>pools.</em></h2>
+        <span class="kind">kind: Skill · $ kubectl get nodes -L pool</span>
+      </header>
+
+      <div class="pools">
+        <div class="pool rv" data-d="1">
+          <div class="pn"><b>orchestration</b><span>Ready</span></div>
+          <ul class="chips"><li class="hot">Kubernetes</li><li class="hot">Rancher</li><li class="hot">Fleet</li><li class="hot">Helm</li><li>Harbor</li><li>Docker</li><li>Docker Compose</li><li>K3s</li><li>Minikube</li><li>Kind</li></ul>
+        </div>
+        <div class="pool rv" data-d="2">
+          <div class="pn"><b>delivery / gitops</b><span>Ready</span></div>
+          <ul class="chips"><li class="hot">GitOps</li><li class="hot">ArgoCD</li><li class="hot">Flux</li><li class="hot">GitLab CI/CD</li><li>GitHub Actions</li><li>Jenkins</li></ul>
+        </div>
+        <div class="pool rv" data-d="3">
+          <div class="pn"><b>cloud &amp; iac</b><span>Ready</span></div>
+          <ul class="chips"><li class="hot">AWS (EKS, RDS)</li><li class="hot">Terraform</li><li>Azure</li></ul>
+        </div>
+        <div class="pool rv" data-d="1">
+          <div class="pn"><b>security</b><span>Ready</span></div>
+          <ul class="chips"><li class="hot">HashiCorp Vault</li><li class="hot">Kyverno</li><li>JWT / OAuth2</li><li>mTLS</li><li>SSL / TLS</li></ul>
+        </div>
+        <div class="pool rv" data-d="2">
+          <div class="pn"><b>mesh &amp; observability</b><span>Ready</span></div>
+          <ul class="chips"><li class="hot">Istio</li><li>Kiali</li><li class="hot">Prometheus</li><li class="hot">Grafana</li><li>ELK Stack</li><li>Zipkin</li><li>SonarQube</li></ul>
+        </div>
+        <div class="pool rv" data-d="3">
+          <div class="pn"><b>languages &amp; frameworks</b><span>Ready</span></div>
+          <ul class="chips"><li class="hot">Java 17</li><li class="hot">Go</li><li class="hot">Spring Boot</li><li>Python</li><li>Node.js</li><li>TypeScript</li><li class="hot">Next.js 15</li><li>React 18</li><li>Angular</li><li>BFF</li></ul>
+        </div>
+        <div class="pool rv" data-d="1">
+          <div class="pn"><b>data &amp; messaging</b><span>Ready</span></div>
+          <ul class="chips"><li class="hot">Apache Kafka</li><li class="hot">PostgreSQL</li><li>Redis</li><li>MongoDB</li><li>MySQL</li></ul>
+        </div>
+        <div class="pool rv" data-d="2">
+          <div class="pn"><b>systems</b><span>Ready</span></div>
+          <ul class="chips"><li class="hot">Linux</li><li>Bash</li><li>PowerShell</li><li>Git</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 05 EDUCATION ===================== -->
+    <section class="sec" id="education" data-sec="education">
+      <header class="sec-head rv">
+        <span class="idx">05</span>
+        <h2>Education &amp; <em>annotations.</em></h2>
+        <span class="kind">kind: Degree · metadata.annotations</span>
+      </header>
+
+      <div class="edu">
+        <article class="cell rv" data-d="1">
+          <div class="cell-kind"><span><b>degree/master</b></span><span>2024 → 2026</span></div>
+          <h3>Master's in Information Systems <em>Engineering</em></h3>
+          <p class="where">Faculty of Sciences Semlalia, Marrakech (FSSM) · Cadi Ayyad University</p>
+          <div class="meta">
+            <span class="ok">● honors</span>
+            <span>focus: distributed systems, cloud-native architecture, security</span>
+          </div>
+        </article>
+
+        <div class="cell soft rv" data-d="2">
+          <div class="cell-kind"><span><b>annotations</b></span><span>yaml</span></div>
+<pre class="yaml"><span class="k">metadata:</span>
+  <span class="k">annotations:</span>
+    <span class="k">lang/arabic:</span>       <span class="v">native</span>
+    <span class="k">lang/french:</span>       <span class="v">professional</span>
+    <span class="k">lang/english:</span>      <span class="v">professional</span>
+    <span class="k">sport/swimming:</span>    <span class="v">"daily"</span>
+    <span class="k">sport/triathlon:</span>   <span class="v">"ironman"</span>   <span class="c"># long-distance, long-running</span>
+    <span class="k">base/location:</span>     <span class="v">Safi, morocco</span>
+    <span class="k">base/timezone:</span>     <span class="v">UTC+1</span></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 06 CONTACT ===================== -->
+    <section class="sec contact" id="contact" data-sec="contact">
+      <header class="sec-head rv">
+        <span class="idx">06</span>
+        <h2>Expose the <em>service.</em></h2>
+        <span class="kind">kind: Service · type: LoadBalancer</span>
+      </header>
+
+      <div class="contact-grid">
+        <div>
+          <p class="big rv" data-d="1">Let's build a platform <em>worth</em> deploying on.</p>
+          <p class="rv" data-d="2" style="color:var(--ink-2);max-width:48ch;text-wrap:pretty">
+            Open to DevOps, Platform and Cloud Engineering roles — Kubernetes platforms, GitOps delivery,
+            and the security work in between. Remote or Morocco-based.
+          </p>
+        </div>
+
+        <ul class="clist rv" data-d="2">
+          <li><span class="k">email</span><a href="mailto:zakariarekhla0@gmail.com">zakariarekhla0@gmail.com</a><button class="cp js-copy" type="button" data-copy="zakariarekhla0@gmail.com" aria-label="Copy email address">copy</button></li>
+          <li><span class="k">phone</span><a href="tel:+212648175782">+212 648 175 782</a><button class="cp js-copy" type="button" data-copy="+212648175782" aria-label="Copy phone number">copy</button></li>
+          <li><span class="k">linkedin</span><a href="https://www.linkedin.com/in/zakaria-rekhla-2116a72a1/" target="_blank" rel="noopener">in/zakaria-rekhla-2116a72a1</a><span class="cp" aria-hidden="true">↗</span></li>
+          <li><span class="k">github</span><a href="https://github.com/ZakariaRek" target="_blank" rel="noopener">github.com/ZakariaRek</a><span class="cp" aria-hidden="true">↗</span></li>
+          <li><span class="k">resume</span><a href="./assets/Zakarai_Rekhla_resume.pdf" target="_blank" rel="noopener">Zakaria_Rekhla_resume.pdf</a><span class="cp" aria-hidden="true">pdf</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span class="js-year">2026</span> Zakaria Rekhla</span>
+      <span>hand-built · one html file · zero frameworks · <a href="#top">back to top ↑</a></span>
+    </footer>
+  </main>
+</div>
+
+<!-- lightbox -->
+<dialog class="lb" id="lb" aria-label="Image preview">
+  <img src="" alt="">
+  <button type="button" class="js-lb-close">close ✕</button>
+</dialog>
+
+<script>
+(() => {
+  'use strict';
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const root = document.documentElement;
+
+  /* ---------- Theme (with View Transitions) ---------- */
+  const stored = (() => { try { return localStorage.getItem('theme'); } catch { return null; } })();
+  if (stored === 'dark' || stored === 'light') root.dataset.theme = stored;
+
+  const isDark = () => root.dataset.theme === 'dark' || (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+  const applyTheme = (next) => {
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch {}
+  };
+  $$('.js-theme').forEach(btn => btn.addEventListener('click', (e) => {
+    const next = isDark() ? 'light' : 'dark';
+    const r = btn.getBoundingClientRect();
+    root.style.setProperty('--vx', (r.left + r.width / 2) + 'px');
+    root.style.setProperty('--vy', (r.top + r.height / 2) + 'px');
+    if (document.startViewTransition && !reduce) document.startViewTransition(() => applyTheme(next));
+    else applyTheme(next);
+  }));
+
+  /* ---------- Scroll progress fallback ---------- */
+  if (!CSS.supports('animation-timeline: scroll()')) {
+    const bar = $('.progress');
+    const upd = () => {
+      const h = root.scrollHeight - innerHeight;
+      bar.style.setProperty('--p', h > 0 ? (scrollY / h).toFixed(4) : 0);
+    };
+    addEventListener('scroll', upd, { passive: true }); upd();
+  }
+
+  /* ---------- Reveals ---------- */
+  const rvEls = $$('.rv, .rv-clip, .rv-line').filter(el => !el.classList.contains('in'));
+  if ('IntersectionObserver' in window && !reduce) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    rvEls.forEach(el => io.observe(el));
+  } else {
+    rvEls.forEach(el => el.classList.add('in'));
+  }
+
+  /* ---------- Rail status: Pending → Running → Ready ---------- */
+  const secs = $$('[data-sec]');
+  const navLinks = $$('[data-nav]');
+  const setStates = (activeId) => {
+    const order = secs.map(s => s.dataset.sec);
+    const ai = order.indexOf(activeId);
+    navLinks.forEach(a => {
+      const i = order.indexOf(a.dataset.nav);
+      a.dataset.state = i < ai ? 'ready' : i === ai ? 'running' : 'pending';
+      const st = a.querySelector('.st');
+      if (st) st.textContent = i < ai ? 'Ready' : i === ai ? 'Running' : 'Pending';
+      if (i === ai) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  };
+  if ('IntersectionObserver' in window) {
+    let current = 'top';
+    const so = new IntersectionObserver((entries) => {
+      entries.forEach(en => { if (en.isIntersecting) current = en.target.dataset.sec; });
+      setStates(current);
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+    secs.forEach(s => so.observe(s));
+  }
+  setStates('top');
+
+  /* ---------- Hero typewriter ---------- */
+  const typeEl = $('.js-type'), out = $('.js-out'), cur = $('.js-cursor');
+  if (typeEl) {
+    const text = typeEl.dataset.text;
+    if (reduce) { typeEl.textContent = text; out.classList.add('show'); cur.remove(); }
+    else {
+      let i = 0;
+      const tick = () => {
+        typeEl.textContent = text.slice(0, ++i);
+        if (i < text.length) setTimeout(tick, 28 + Math.random() * 40);
+        else setTimeout(() => { out.classList.add('show'); cur.style.display = 'none'; }, 260);
+      };
+      setTimeout(tick, 500);
+    }
+  }
+
+  /* ---------- Magnetic buttons (fine pointers only) ---------- */
+  if (matchMedia('(pointer: fine)').matches && !reduce) {
+    $$('.magnet').forEach(el => {
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+        const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+        el.style.transform = `translate(${dx * 6}px, ${dy * 6}px)`;
+      });
+      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+    });
+  }
+
+  /* ---------- Copy buttons ---------- */
+  $$('.js-copy').forEach(btn => btn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(btn.dataset.copy);
+      btn.textContent = 'copied'; btn.classList.add('done');
+      setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('done'); }, 1600);
+    } catch { location.href = 'mailto:' + btn.dataset.copy; }
+  }));
+
+  /* ---------- Lightbox ---------- */
+  const lb = $('#lb'), lbImg = $('img', lb);
+  $$('[data-lb]').forEach(a => a.addEventListener('click', (e) => {
+    e.preventDefault();
+    lbImg.src = a.getAttribute('href');
+    lbImg.alt = a.querySelector('img')?.alt || '';
+    lb.showModal();
+  }));
+  $('.js-lb-close').addEventListener('click', () => lb.close());
+  lb.addEventListener('click', (e) => { if (e.target === lb) lb.close(); });
+  lb.addEventListener('close', () => { lbImg.src = ''; });
+
+  /* ---------- Clock (Marrakech, UTC+1) & year ---------- */
+  const clock = $('.js-clock');
+  const tickClock = () => {
+    if (!clock) return;
+    try {
+      clock.textContent = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Casablanca' }).format(new Date());
+    } catch { clock.textContent = new Date().toTimeString().slice(0, 5); }
+  };
+  tickClock(); setInterval(tickClock, 30000);
+  $$('.js-year').forEach(el => el.textContent = new Date().getFullYear());
+})();
+</script>
+</body>
+</html>
